@@ -11,49 +11,6 @@
 
 
 
-function fillArr(n: number, myList: string[]) {
-  for (let i = 0; i < n; i++) {
-    myList.unshift('0');
-  }
-}
-
-function addSum(a: string, b: string): string {
-  let pa = a.length;
-  let pb = b.length;
-  let aList: string[] = Array.from(a);
-  let bList: string[] = Array.from(b);
-  const result: string[] = [];
-  let p = [];
-
-  if (pa > pb) {
-    fillArr(pa - pb, bList);
-  } else {
-    fillArr(pb - pa, aList);
-  }
-
-  for (let i = aList.length - 1; i >= 0; i--) {
-    let an = Number(aList[i]);
-    let bn = Number(bList[i]);
-    let v = 0;
-    const pn = p.length > 0 ? p.pop() : 0;
-    if (an + bn + pn === 10) {
-      v = 0;
-      p.push(1);
-    } else if (an + bn + pn >= 11) {
-      v = (an + bn + pn) % 10;
-      p.push(Math.floor((an + bn + pn) / 10));
-    } else {
-      v = an + bn + pn;
-    }
-    result.unshift(v.toString());
-  }
-  if (p.length > 0) {
-    result.unshift(p.pop().toString());
-  }
-  return result.join('');
-
-};
-
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
   const listNodeToString = (node: ListNode, sum: string) => {
     if (!node) {
@@ -64,8 +21,8 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
   }
 
   const getRevSum = (lStr: string, rStr: string) => {
-    let sum = addSum(lStr, rStr);
-    let _sumStr = sum;
+    let sum: BigInt = BigInt(lStr) + BigInt(rStr);
+    let _sumStr = sum.toString();
     let str = "";
     for (let i = 0; i < _sumStr.length; i++) {
       str = `${_sumStr[i]}${str}`;
