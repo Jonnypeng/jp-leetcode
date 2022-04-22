@@ -5,44 +5,53 @@
  */
 
 // @lc code=start
-function longestPalindrome(s: string): string{
-  const res: number[][] = [];
-  let max: number = 0;
-  const judgmentPalindrome = (l: number, r: number) => {
-    if (s[l] === s[r]) {
-      return 2;
-    } else {
-      return 0;
+
+
+function longestPalindrome(s: string): string {
+  const store: string[][] = [];
+  let longAnswer:string = s.length === 1 ? s : '';
+
+  const getPalindrome = (str: string,l:number,r:number):boolean => {
+    if(r<=l){
+      return true;
+    }
+    if(str[l]===str[r]){
+      return getPalindrome(str,l+1,r-1); 
+    }else{
+      return false;
     }
   }
+
+  if(longAnswer){
+      return longAnswer;
+  }
+
   for (let i = 0; i < s.length; i++) {
-    res[i] = [];
+    store[i] = [];
     for (let j = 0; j < s.length; j++) {
-      res[i][j] = 0;
-      if (i === j || i === 0 || j === 0) {
-        res[i][j] = 1;
+      if(j<i){
+        store[i][j] = '';
+        continue; 
+      }
+      if(i===j){
+        store[i][j] = s[i]; 
         continue;
       }
-      if (res[j]&&res[j][i]) {
-        res[i][j] = res[j][i];
-        continue;
+      const tempStr = `${store[i][j-1]}${s[j]}`;
+      store[i][j] = tempStr;
+      if(getPalindrome(tempStr,0,tempStr.length-1)){
+        longAnswer = tempStr.length > longAnswer.length ? tempStr : longAnswer;
       }
-      res[i][j] = res[i][j] + judgmentPalindrome(i, j);
     }
   }
-  for (let i = 0; i < s.length - 1; i++) {
-    for (let j = s.length - 1; j > 0; j--) {
-      if (i === j) {
-        continue;
-      }
-      res[i][j] = res[i][j] + res[i+1][j-1];
-      max = Math.max(max,res[i][j]);
-    }
+
+  if(!longAnswer){
+    longAnswer = s[0]; 
   }
-  console.log(res);
-  return '';
+
+  return longAnswer;
 };
 
-// longestPalindrome('abbacd');
+// longestPalindrome("civilwartestingwhetherthatnaptionoranynartionsoconceivedandsodedicatedcanlongendureWeareqmetonagreatbattlefiemldoftzhatwarWehavecometodedicpateaportionofthatfieldasafinalrestingplaceforthosewhoheregavetheirlivesthatthatnationmightliveItisaltogetherfangandproperthatweshoulddothisButinalargersensewecannotdedicatewecannotconsecratewecannothallowthisgroundThebravelmenlivinganddeadwhostruggledherehaveconsecrateditfaraboveourpoorponwertoaddordetractTgheworldadswfilllittlenotlenorlongrememberwhatwesayherebutitcanneverforgetwhattheydidhereItisforusthelivingrathertobededicatedheretotheulnfinishedworkwhichtheywhofoughtherehavethusfarsonoblyadvancedItisratherforustobeherededicatedtothegreattdafskremainingbeforeusthatfromthesehonoreddeadwetakeincreaseddevotiontothatcauseforwhichtheygavethelastpfullmeasureofdevotionthatweherehighlyresolvethatthesedeadshallnothavediedinvainthatthisnationunsderGodshallhaveanewbirthoffreedomandthatgovernmentofthepeoplebythepeopleforthepeopleshallnotperishfromtheearth");
 // @lc code=end
 
