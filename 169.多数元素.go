@@ -1,4 +1,4 @@
-// package main
+package main
 
 /*
  * @lc app=leetcode.cn id=169 lang=golang
@@ -25,5 +25,11 @@ func majorityElement(nums []int) int {
 	}
 	return maxValue[0]
 }
+
+// func main() {
+// 	arr := []int{1, 2, 2, 4, 5}
+// 	r := majorityElement(arr)
+// 	fmt.Print(r)
+// }
 
 // @lc code=end
