@@ -2,7 +2,7 @@
  * @Author: 彭江
  * @Date: 2022-04-25 20:29:19
  * @LastEditors: 彭江
- * @LastEditTime: 2022-04-25 22:16:14
+ * @LastEditTime: 2022-04-25 23:43:49
  */
 package main
 
@@ -16,66 +16,38 @@ package main
 
 func longestPalindrome(s string) string {
 	var longAnswer string = ""
-	var dataMap map[string]bool = make(map[string]bool)
 	var n int = len(s)
 
-	if n == 1 {
+	if n <= 1 {
 		longAnswer = s
-	} else {
-		longAnswer = ""
 	}
 
-	var getPalindrome func(str string, preStr string) bool
-	getPalindrome = func(str string, preStr string) bool {
-		key := str
-		if _, ok := dataMap[key]; ok {
-			val := dataMap[key]
-			dataMap[preStr] = val
-			return val
+	var expond = func(l int, r int) string {
+		for l >= 0 && r <= n-1 && s[l] == s[r] {
+			l--
+			r++
 		}
-		if len(str) == 1 || str == "" {
-			dataMap[preStr] = true
-			return true
-		}
-		if str[0] == str[len(str)-1] {
-			return getPalindrome(str[1:len(str)-1], str)
-		} else {
-			dataMap[preStr] = false
-			return false
-		}
+		return s[l+1 : r]
 	}
 
-	if longAnswer != "" {
-		return longAnswer
-	}
-
-	for i := 0; i < len(s); i++ {
-		for j := 0; j < len(s); j++ {
-			if j < i {
-				continue
-			}
-			if i == j {
-				continue
-			}
-			tempStr := s[i : j+1]
-			if getPalindrome(tempStr, tempStr) {
-				if len(tempStr) > len(longAnswer) {
-					longAnswer = tempStr
-				}
+	for i := 0; i < n-1; i++ {
+		l1 := expond(i, i)
+		l2 := expond(i, i+1)
+		var arr [2]string = [2]string{l1, l2}
+		for j := 0; j < len(arr); j++ {
+			val := arr[j]
+			if len(val) > len(longAnswer) {
+				longAnswer = val
 			}
 		}
-	}
-
-	if longAnswer == "" {
-		longAnswer = s[0:1]
 	}
 
 	return longAnswer
 }
 
-func main() {
-	var pa string = "ajgiljtperkvubjmdsefcylksrxtftqrehoitdgdtttswwttmfuvwgwrruuqmxttzsbmuhgfaoueumvbhajqsaxkkihjwevzzedizmrsmpxqavyryklbotwzngxscvyuqjkkaotitddlhhnutmotupwuwyltebtsdfssbwayuxrbgihmtphshdslktvsjadaykyjivbzhwujcdvzdxxfiixnzrmusqvwujjmxhbqbdpauacnzojnzxxgrkmupadfcsujkcwajsgintahwgbjnvjqubcxajdyyapposrkpqtpqfjcvbhlmwfutgognqxgaukpmdyaxghgoqkqnigcllachmwzrazwhpppmsodvxilrccfqgpkmdqhoorxpyjsrtbeeidsinpeyxxpsjnymxkouskyhenzgieybwkgzrhhrzgkwbyeigznehyksuokxmynjspxxyepnisdieebtrsjypxroohqdmkpgqfccrlixvdosmppphwzarzwmhcallcginqkqoghgxaydmpkuagxqngogtufwmlhbvcjfqptqpkrsoppayydjaxcbuqjvnjbgwhatnigsjawckjuscfdapumkrgxxznjozncauapdbqbhxmjjuwvqsumrznxiifxxdzvdcjuwhzbvijykyadajsvtklsdhshptmhigbrxuyawbssfdstbetlywuwputomtunhhlddtitoakkjquyvcsxgnzwtoblkyryvaqxpmsrmzidezzvewjhikkxasqjahbvmueuoafghumbszttxmquurrwgwvufmttwwstttdgdtioherqtftxrsklycfesdmjbuvkreptjligja"
-	longestPalindrome(pa)
-}
+// func main() {
+// 	var pa string = "ajgiljtperkvubjmdsefcylksrxtftqrehoitdgdtttswwttmfuvwgwrruuqmxttzsbmuhgfaoueumvbhajqsaxkkihjwevzzedizmrsmpxqavyryklbotwzngxscvyuqjkkaotitddlhhnutmotupwuwyltebtsdfssbwayuxrbgihmtphshdslktvsjadaykyjivbzhwujcdvzdxxfiixnzrmusqvwujjmxhbqbdpauacnzojnzxxgrkmupadfcsujkcwajsgintahwgbjnvjqubcxajdyyapposrkpqtpqfjcvbhlmwfutgognqxgaukpmdyaxghgoqkqnigcllachmwzrazwhpppmsodvxilrccfqgpkmdqhoorxpyjsrtbeeidsinpeyxxpsjnymxkouskyhenzgieybwkgzrhhrzgkwbyeigznehyksuokxmynjspxxyepnisdieebtrsjypxroohqdmkpgqfccrlixvdosmppphwzarzwmhcallcginqkqoghgxaydmpkuagxqngogtufwmlhbvcjfqptqpkrsoppayydjaxcbuqjvnjbgwhatnigsjawckjuscfdapumkrgxxznjozncauapdbqbhxmjjuwvqsumrznxiifxxdzvdcjuwhzbvijykyadajsvtklsdhshptmhigbrxuyawbssfdstbetlywuwputomtunhhlddtitoakkjquyvcsxgnzwtoblkyryvaqxpmsrmzidezzvewjhikkxasqjahbvmueuoafghumbszttxmquurrwgwvufmttwwstttdgdtioherqtftxrsklycfesdmjbuvkreptjligja"
+// 	longestPalindrome(pa)
+// }
 
 // @lc code=end

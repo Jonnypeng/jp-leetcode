@@ -1,4 +1,10 @@
 /*
+ * @Author: 彭江
+ * @Date: 2022-04-25 20:29:19
+ * @LastEditors: 彭江
+ * @LastEditTime: 2022-04-25 23:32:12
+ */
+/*
  * @lc app=leetcode.cn id=5 lang=typescript
  *
  * [5] 最长回文子串
@@ -8,69 +14,35 @@
 
 
 function longestPalindrome(s: string): string {
-  let longAnswer: string = s.length === 1 ? s : '';
-  const dataMap: Map<string, boolean> = new Map();
+  let longAnswer: string = '';
   const n = s.length;
-  const isQ = n % 2 !== 0;
-  let left: number;
-  let right: number;
 
-  if (isQ) {
-    left = ((n - 1) / 2) + 1;
-    right = ((n - 1) / 2) - 1;
-  } else {
-    left = Math.ceil((n - 1) / 2);
-    right = Math.floor((n - 1) / 2);
+  if (!s || n === 1) {
+    longAnswer = s;
   }
 
-  const getPalindrome = (str: string, preStr: string): boolean => {
-    const key = str;
-    let val;
-    if (dataMap.has(key)) {
-      val = dataMap.get(key);
+  const expond = (l: number, r: number) => {
+    while (l >= 0 && r <= n - 1 && s[l] === s[r]) {
+      l--;
+      r++;
     }
-    if (val !== undefined) {
-      dataMap.set(preStr, val);
-      return val;
-    }
-    if (str.length === 1 || str === '') {
-      dataMap.set(preStr, true);
-      return true;
-    }
-    if (str[0] === str[str.length - 1]) {
-      return getPalindrome(str.slice(1, str.length - 1), preStr);
-    } else {
-      dataMap.set(preStr, false);
-      return false;
-    }
+    return s.slice(l + 1, r);
   }
 
-  if (longAnswer) {
-    return longAnswer;
-  }
-
-  for (let i = n-1; i >= 0; i--) {
-    for (let j = 0; j < n; j++) {
-      if (j < i) {
-        continue;
+  for (let i = 0; i < n - 1; i++) {
+    const l1 = expond(i, i);
+    const l2 = expond(i, i+1);
+    const arr = [l1,l2];
+    arr.forEach(str => {
+      if (str.length > longAnswer.length) {
+        longAnswer = str;
       }
-      if (i === j) {
-        continue;
-      }
-      const tempStr = s.slice(i, j + 1);
-      if (getPalindrome(tempStr, tempStr)) {
-        longAnswer = tempStr.length > longAnswer.length ? tempStr : longAnswer;
-      }
-    }
-  }
-
-  if (!longAnswer) {
-    longAnswer = s[0];
+    })
   }
 
   return longAnswer;
 };
 
- //longestPalindrome("ajgiljtperkvubjmdsefcylksrxtftqrehoitdgdtttswwttmfuvwgwrruuqmxttzsbmuhgfaoueumvbhajqsaxkkihjwevzzedizmrsmpxqavyryklbotwzngxscvyuqjkkaotitddlhhnutmotupwuwyltebtsdfssbwayuxrbgihmtphshdslktvsjadaykyjivbzhwujcdvzdxxfiixnzrmusqvwujjmxhbqbdpauacnzojnzxxgrkmupadfcsujkcwajsgintahwgbjnvjqubcxajdyyapposrkpqtpqfjcvbhlmwfutgognqxgaukpmdyaxghgoqkqnigcllachmwzrazwhpppmsodvxilrccfqgpkmdqhoorxpyjsrtbeeidsinpeyxxpsjnymxkouskyhenzgieybwkgzrhhrzgkwbyeigznehyksuokxmynjspxxyepnisdieebtrsjypxroohqdmkpgqfccrlixvdosmppphwzarzwmhcallcginqkqoghgxaydmpkuagxqngogtufwmlhbvcjfqptqpkrsoppayydjaxcbuqjvnjbgwhatnigsjawckjuscfdapumkrgxxznjozncauapdbqbhxmjjuwvqsumrznxiifxxdzvdcjuwhzbvijykyadajsvtklsdhshptmhigbrxuyawbssfdstbetlywuwputomtunhhlddtitoakkjquyvcsxgnzwtoblkyryvaqxpmsrmzidezzvewjhikkxasqjahbvmueuoafghumbszttxmquurrwgwvufmttwwstttdgdtioherqtftxrsklycfesdmjbuvkreptjligja");
+// longestPalindrome("babad");
 // @lc code=end
 
