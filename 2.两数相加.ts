@@ -4,7 +4,14 @@
  * [2] 两数相加
  */
 
-
+class ListNode {
+  val: number
+  next: ListNode | null
+  constructor(val?: number, next?: ListNode | null) {
+    this.val = (val === undefined ? 0 : val)
+    this.next = (next === undefined ? null : next)
+  }
+}
 
 // @lc code=start
 //  Definition for singly-linked list.
@@ -12,7 +19,7 @@
 
 
 function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | null {
-  const listNodeToString = (node: ListNode, sum: string) => {
+  const listNodeToString = (node: ListNode | null, sum: string):string => {
     if (!node) {
       return sum;
     }
@@ -48,7 +55,6 @@ function addTwoNumbers(l1: ListNode | null, l2: ListNode | null): ListNode | nul
   root.val = Number(sumStr[0]);
   grenListNode(sumStr, 1, root);
 
-  console.log(sumStr);
   return root;
 };
 // @lc code=end
