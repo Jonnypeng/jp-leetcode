@@ -4,6 +4,8 @@
  * [12] 整数转罗马数字
  */
 
+package main
+
 // @lc code=start
 func intToRoman(num int) string {
 	var temp int = num
@@ -85,4 +87,3 @@ func intToRoman(num int) string {
 }
 
 // @lc code=end
-
