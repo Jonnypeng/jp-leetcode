@@ -1,48 +1,63 @@
+package main
+
 /*
  * @lc app=leetcode.cn id=16 lang=golang
  *
  * [16] 最接近的三数之和
  */
-package main
 
-import "math"
+import (
+	"sort"
+)
 
 // @lc code=start
 
-func getSum(nums [3]int, target int) int {
-	var sum = 0
-	var res = 0
-	for i := 0; i < len(nums); i++ {
-		sum += nums[i]
+// 获取绝对值
+func abs(num int) int {
+	if num < 0 {
+		return num * -1
 	}
-	var r float64 = float64(target - sum)
-	res = int(math.Abs(r))
-	return res
+	return num
 }
 
 func threeSumClosest(nums []int, target int) int {
-	var res = math.MaxInt
-	var x, y, z = 0, 0, 0
-	var sum = 0
 	var n = len(nums) - 1
-	for p := 0; p <= n; p += 1 {
-		for i := p - 1; i >= 0; i -= 1 {
-			for j := p + 1; j <= n; j += 1 {
-				a := nums[i]
-				b := nums[p]
-				c := nums[j]
-				_res := getSum([3]int{a, b, c}, target)
-				if _res < res {
-					res = _res
-					x = i
-					y = p
-					z = j
-				}
+	var sum = nums[0] + nums[1] + nums[2]
+
+	// 将数组进行排序
+	sort.Slice(nums, func(i, j int) bool {
+		return nums[i] < nums[j]
+	})
+
+	// 遍p点
+	for p := 0; p < n-1; p += 1 {
+		// 求出差值
+		anoter := target - nums[p]
+		// 赋低、矮两个指针
+		l, h := p+1, n
+		for l < h {
+			if l == p || h == p {
+				continue
+			}
+			v := nums[l] + nums[h]
+			w := v + nums[p]
+			if abs(target-w) < abs(target-sum) {
+				sum = w
+			}
+			if v > anoter {
+				h--
+			} else if v < anoter {
+				l++
+			} else {
+				break
 			}
 		}
 	}
-	sum = nums[x] + nums[y] + nums[z]
 	return sum
 }
 
 // @lc code=end
+
+func main() {
+	threeSumClosest([]int{-1, 2, 1, -4}, 2) //2
+}
