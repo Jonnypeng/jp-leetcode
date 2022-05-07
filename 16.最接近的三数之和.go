@@ -58,6 +58,6 @@ func threeSumClosest(nums []int, target int) int {
 
 // @lc code=end
 
-func main() {
-	threeSumClosest([]int{-1, 2, 1, -4}, 2) //2
-}
+// func main() {
+// 	threeSumClosest([]int{-1, 2, 1, -4}, 2) //2
+// }

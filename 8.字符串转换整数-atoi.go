@@ -76,8 +76,8 @@ func myAtoi(s string) int {
 
 // @lc code=end
 
-func main() {
-	// myAtoi("   -1abc")
-	// myAtoi("+1") // 1
-	myAtoi("20000000000000000000") // 1
-}
+// func main() {
+// 	// myAtoi("   -1abc")
+// 	// myAtoi("+1") // 1
+// 	myAtoi("20000000000000000000") // 1
+// }
