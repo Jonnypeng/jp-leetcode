@@ -23,10 +23,11 @@ function backtrack(node: TreeNode | null, str: string, index: number, res: strin
   if (res.length > 0) {
     const i = res.length - 1;
     const lastVal = res[i];
-    const reg = new RegExp(lastVal);
-    if (reg.test(str)) {
+    const reg0 = new RegExp(lastVal);
+    const reg1 = new RegExp(str);
+    if (reg0.test(str)) {
       res[i] = str;
-    } else if(!new RegExp(str).test(lastVal)){
+    } else if(!reg1.test(lastVal)){
       res.push(str);
     }
   } else {
