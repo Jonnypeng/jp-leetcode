@@ -17,7 +17,6 @@ type TreeNode struct {
  * [257] 二叉树的所有路径
  */
 
-// @lc code=start
 /**
  * Definition for a binary tree node.
  * type TreeNode struct {
@@ -27,6 +26,7 @@ type TreeNode struct {
  * }
  */
 
+// @lc code=start
 func back(node *TreeNode, str string, index int, res *[]string) {
 	if len(*res) > 0 {
 		i := len(*res) - 1
@@ -38,6 +38,9 @@ func back(node *TreeNode, str string, index int, res *[]string) {
 		}
 	} else {
 		*res = append(*res, str)
+	}
+	if node == nil {
+		return
 	}
 	var nextStr string = str + "->" + strconv.Itoa(node.Val)
 	back(node.Left, nextStr, index+1, res)
