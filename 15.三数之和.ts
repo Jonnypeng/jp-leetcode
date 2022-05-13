@@ -1,45 +1,41 @@
 function threeSum(nums: number[]): number[][] {
-  nums.sort();
-  let ans: number[][] = [];
-  const strs: string[] = [];
-  const dict: Map<number, number> = new Map();
+  const result: number[][] = [];
+  const n = nums.length;
 
-  const twoSum = (bi: number, nums: number[], target: number): number[][] => {
-    let tempArr: number[][] = [];
-    for (let i = 0; i < nums.length; i++) {
-      const b = target - nums[i];
-      if (i === bi) {
-        continue;
-      }
-      if (dict.has(b)) {
-        const j = dict.get(b);
-        if (i !== j && j !== bi) {
-          const fv = nums[bi];
-          const v1 = nums[j];
-          const v2 = nums[i];
-          const childArr = [fv, v1, v2];
-          childArr.sort();
-          const str = childArr.join('-');
-          if (!(strs.includes(str))) {
-            strs.push(str)
-            tempArr.push(childArr);
-          }
-        }
-      }
-      dict.set(nums[i], i);
-    }
-    return tempArr;
+  if(n < 3){
+    return result;
   }
 
-  for (let i = 0; i < nums.length; i++) {
-    const first = nums[i];
-    let temp: number[][];
-    const target = first * -1;
-    temp = twoSum(i, nums, target);
-    if (temp.length === 0) {
+  nums.sort((x,y)=>x-y);
+
+  for (let i = 0; i < n - 2; i += 1) {
+    if (i > 0 && nums[i] === nums[i - 1]) {
       continue;
     }
-    ans = ans.concat(temp);
+    const target = nums[i] * -1;
+    let left = i + 1;
+    let right = n - 1;
+    while (left < right) {
+      const sum = nums[left] + nums[right];
+      if (sum === target) {
+        result.push([nums[i], nums[left], nums[right]]);
+        left++;
+        while (left < right && nums[left] === nums[left - 1]) {
+          left++;
+        }
+        right--;
+        while (left < right && nums[right] === nums[right + 1]) {
+          right--;
+        }
+      } else if (sum > target) {
+        right--;
+      } else if (sum < target) {
+        left++;
+      }
+    }
   }
-  return ans;
+  return result;
 };
+
+// const r = threeSum([-1,0,1,2,-1,-4]);
+// console.log(r);
