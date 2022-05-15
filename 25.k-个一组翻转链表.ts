@@ -1,3 +1,9 @@
+/*
+ * @Author: 彭江
+ * @Date: 2022-05-14 08:57:31
+ * @LastEditors: 彭江
+ * @LastEditTime: 2022-05-15 12:17:21
+ */
 import { ListNode } from './type';
 
 /*
@@ -21,65 +27,45 @@ import { ListNode } from './type';
  * }
  */
 
-function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
-  const root: ListNode = {
-    val: -1,
-    next: head
+const swap = (aNode: ListNode, bNode: ListNode) => {
+  const startNext = aNode.next;
+  const endNext = bNode.next;
+  if (startNext === bNode) {
+    aNode.next = endNext;
+    bNode.next = aNode;
+  } else {
+    aNode.next = endNext;
+    bNode.next = startNext;
   }
+  return startNext;
+}
 
-  if(k===1){
+function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
+  if (!head) {
     return head;
   }
 
-  const exe = (preNode: ListNode, node: ListNode | null) => {
-    const nodes: ListNode[] = [];
-    let startNext: ListNode | null = null;
-    let endNext: ListNode | null = null;
+  let p:ListNode | null = head;
+  const nodesMap: Array<ListNode|null>[] = [];
 
-
-    for (let i = 0; i < k; i++) {
-      if (node) {
-        nodes.push(node);
-        node = node.next;
-      }
+  // 将K节点之前的所有节点都推送到数组中
+  while (p !== null) {
+    let nodes:Array<ListNode|null> = [];
+    for (let i = 0; i < k; i += 1) {
+        nodes[k-i] = p;
+        p = p?.next ?? null;
+        if(i === k -1){
+          nodes = nodes.includes(null) ? nodes.reverse() : nodes;
+          nodesMap.push(nodes);
+        }
     }
-
-    if (nodes.length === k && k > 2) {
-      startNext = nodes[0].next;
-      endNext = nodes[k - 1].next;
-
-      nodes[0].next = null;
-      nodes[k - 1].next = null;
-
-      preNode.next = nodes[k - 1];
-      nodes[k - 2].next = nodes[0];
-
-      nodes[k - 1].next = startNext;
-      nodes[0].next = endNext;
-
-      if (endNext) {
-        exe(nodes[0], endNext);
-      }
-    }else if(nodes.length === k && k === 2){
-      endNext = nodes[1].next;
-
-      nodes[0].next = null;
-      nodes[1].next = null;
-
-      preNode.next = nodes[1];
-      nodes[1].next = nodes[0];
-      nodes[0].next = endNext;
-
-      if (endNext) {
-        exe(nodes[0], endNext);
-      }
-    }
-
   }
 
-  exe(root, head);
+  console.log(nodesMap);
 
-  return root.next;
+  return head;
+
+
 
 };
 // @lc code=end
@@ -96,7 +82,16 @@ const l1: ListNode = {
         val: 4,
         next: {
           val: 5,
-          next: null
+          next: {
+            val:6,
+            next:{
+              val:7,
+              next:{
+                val:8,
+                next:null
+              }
+            }
+          }
         }
       }
     }
@@ -106,5 +101,5 @@ const l1: ListNode = {
 const k1 = 2;
 const k2 = 3;
 
-const r = reverseKGroup(l1, k1)
+const r = reverseKGroup(l1, 3)
 console.log(r);
