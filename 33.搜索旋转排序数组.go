@@ -58,7 +58,7 @@ func search(nums []int, target int) int {
 
 // @lc code=end
 
-func main() {
-	search([]int{4, 5, 6, 7, 0, 1, 2}, 0)
+// func main() {
+// 	search([]int{4, 5, 6, 7, 0, 1, 2}, 0)
 
-}
+// }
