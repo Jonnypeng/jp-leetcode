@@ -22,6 +22,6 @@ func isPowerOfTwo(n int) bool {
 
 // @lc code=end
 
-func main() {
-	isPowerOfTwo(1)
-}
+// func main() {
+// 	isPowerOfTwo(1)
+// }
