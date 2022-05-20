@@ -2,14 +2,9 @@ package main
 
 import (
 	"regexp"
-	"strconv"
+	"strconv",
+	"type"
 )
-
-// type TreeNode struct {
-// 	Val   int
-// 	Left  *TreeNode
-// 	Right *TreeNode
-// }
 
 /*
  * @lc app=leetcode.cn id=257 lang=golang
