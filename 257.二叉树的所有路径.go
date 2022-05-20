@@ -2,8 +2,7 @@ package main
 
 import (
 	"regexp"
-	"strconv",
-	"type"
+	"strconv"
 )
 
 /*
