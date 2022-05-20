@@ -3,7 +3,7 @@
  *
  * [7] 整数反转
  */
-package main
+package leetcode
 
 import (
 	"math"

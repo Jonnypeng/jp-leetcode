@@ -1,10 +1,4 @@
-/*
- * @Author: 彭江
- * @Date: 2022-04-25 20:29:19
- * @LastEditors: 彭江
- * @LastEditTime: 2022-04-25 23:43:49
- */
-package main
+package leetcode
 
 /*
  * @lc app=leetcode.cn id=5 lang=golang

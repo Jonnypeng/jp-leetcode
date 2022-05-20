@@ -1,9 +1,15 @@
-package main
+package leetcode
 
 import (
 	"regexp"
 	"strconv"
 )
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
 
 /*
  * @lc app=leetcode.cn id=257 lang=golang

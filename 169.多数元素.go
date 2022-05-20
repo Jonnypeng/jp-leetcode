@@ -1,4 +1,4 @@
-package majorityElement
+package leetcode
 
 /*
  * @lc app=leetcode.cn id=169 lang=golang
