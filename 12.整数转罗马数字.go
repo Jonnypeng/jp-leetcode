@@ -4,7 +4,7 @@
  * [12] 整数转罗马数字
  */
 
-package main
+package leetcode
 
 // @lc code=start
 func intToRoman(num int) string {

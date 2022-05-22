@@ -23,7 +23,7 @@ import { ListNode } from './type';
 
 
 
-function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
+ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
   if (!head || head.next === null) {
     return head;
   }
@@ -68,9 +68,26 @@ function reverseKGroup(head: ListNode | null, k: number): ListNode | null {
 
   return root;
 
+  // 遍历已排序的二维数组，将节点重新拼接
+  for (let i = 0; i < nodesMap.length; i += 1) {
+    for (let j = 0; j < nodesMap[i].length; j += 1) {
+      if (nodesMap[i][j]) {
+        (nodesMap[i][j] as ListNode).next = null;
+        if (i === 0 && j === 0) {
+          root = nodesMap[i][j];
+        }
+        if (p) {
+          p.next = nodesMap[i][j];
+          p = nodesMap[i][j];
+        }
+      }
+    }
+  }
 
+  return root;
 
 };
+
 // @lc code=end
 
 // test
