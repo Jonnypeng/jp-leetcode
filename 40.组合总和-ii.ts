@@ -10,7 +10,7 @@ function combinationSum2(candidates: number[], target: number): number[][] {
   sortCandidates.sort((x, y) => x - y);
   let res: number[][] = [];
   const n = candidates.length;
-  const arr: string[] = [];
+  const dict: Record<string,boolean> = {};
 
   if (sortCandidates[0] === sortCandidates[n - 1] && target >= sortCandidates[0]) {
     const x = target / sortCandidates[0];
@@ -37,8 +37,9 @@ function combinationSum2(candidates: number[], target: number): number[][] {
   const dfs = (target: number, combin: number[], index: number) => {
     if (target === 0) {
       const str = combin.join('-');
-      if (!(arr.includes(str))) {
-        arr.push(str);
+      if (!(dict[str])) {
+        dict[str] = true;
+        res.push(combin);
       }
       return;
     }
@@ -53,11 +54,11 @@ function combinationSum2(candidates: number[], target: number): number[][] {
 
   dfs(target, [], 0);
 
-  res = arr.map(v => {
-    const strArr = v.split('-');
-    const numArr = strArr.map(v => Number(v));
-    return numArr;
-  })
+  // res = arr.map(v => {
+  //   const strArr = v.split('-');
+  //   const numArr = strArr.map(v => Number(v));
+  //   return numArr;
+  // })
 
   return res;
 };
