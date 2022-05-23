@@ -1,9 +1,3 @@
-/*
- * @Author: 彭江
- * @Date: 2022-05-14 08:57:31
- * @LastEditors: 彭江
- * @LastEditTime: 2022-05-15 12:17:21
- */
 import { ListNode } from './type';
 
 /*
@@ -15,19 +9,6 @@ import { ListNode } from './type';
 
 
 // @lc code=start
-/**
- * Definition for singly-linked list.
- * class ListNode {
- *     val: number
- *     next: ListNode | null
- *     constructor(val?: number, next?: ListNode | null) {
- *         this.val = (val===undefined ? 0 : val)
- *         this.next = (next===undefined ? null : next)
- *     }
- * }
- */
-
-
 /**
  * Definition for singly-linked list.
  * class ListNode {
@@ -87,6 +68,24 @@ import { ListNode } from './type';
 
   return root;
 
+  // 遍历已排序的二维数组，将节点重新拼接
+  for (let i = 0; i < nodesMap.length; i += 1) {
+    for (let j = 0; j < nodesMap[i].length; j += 1) {
+      if (nodesMap[i][j]) {
+        (nodesMap[i][j] as ListNode).next = null;
+        if (i === 0 && j === 0) {
+          root = nodesMap[i][j];
+        }
+        if (p) {
+          p.next = nodesMap[i][j];
+          p = nodesMap[i][j];
+        }
+      }
+    }
+  }
+
+  return root;
+
 };
 
 // @lc code=end
@@ -104,12 +103,12 @@ const l1: ListNode = {
         next: {
           val: 5,
           next: {
-            val:6,
-            next:{
-              val:7,
-              next:{
-                val:8,
-                next:null
+            val: 6,
+            next: {
+              val: 7,
+              next: {
+                val: 8,
+                next: null
               }
             }
           }
@@ -122,5 +121,5 @@ const l1: ListNode = {
 const k1 = 2;
 const k2 = 3;
 
-const r = reverseKGroup(l1, 3)
+const r = reverseKGroup(l1, 5)
 console.log(r);
