@@ -34,8 +34,6 @@ function combinationSum2(candidates: number[], target: number): number[][] {
     return res;
   }
 
-
-
   const dfs = (target: number, combin: number[], index: number) => {
     if (target === 0) {
       const str = combin.join('-');
