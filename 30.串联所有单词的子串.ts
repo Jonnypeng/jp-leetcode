@@ -24,44 +24,15 @@ function getIsArithmeticSequence(nums: number[]): null | number {
 }
 
 
-function getSubstringIsInS(s: string, words: string[], wordsCountMap: Record<string, number>) {
-  let oneWordLength = words[0].length;
-  let sl = s.length;
-  // let start: number = 0;
-  const res: number[] = [];
-
-
-  for (let start = 0; sl - start >= words.length * oneWordLength; start += oneWordLength) {
-    const subString = s.slice(start);
-    // let count = 0;
-    let indexs: number[] = [];
-    let tempMap: Record<string, number> = {};
-
-    for (let i = 0; i < words.length; i++) {
-      let word = words[i];
-      let index = subString.indexOf(word);
-      if (index !== -1) {
-        tempMap[word] = tempMap[word] ? tempMap[word] + 1 : 1;
-        if (tempMap[word] <= wordsCountMap[word]) {
-          indexs.push(index);
-        }
-      }
+function findSubstring(s: string, words: string[]): number[] {
+  if (words.length === 1) {
+    let index = s.indexOf(s);
+    if (index === -1) {
+      return [];
     }
-
-    indexs.sort((x,y)=>x-y);
-
-    if (indexs.length === words.length && indexs[0] === 0 && getIsArithmeticSequence(indexs) === oneWordLength) {
-      res.push(start);
-    }
-
-
-
+    return [index];
   }
 
-  return res;
-}
-
-function findSubstring(s: string, words: string[]): number[] {
   let wordsCountMap: Record<string, number> = {};
 
   words.forEach(word => {
@@ -72,13 +43,34 @@ function findSubstring(s: string, words: string[]): number[] {
     }
   })
 
-  const res = getSubstringIsInS(s, words, wordsCountMap);
+  const res: number[] = [];
+  let wl = words.length;
+  let owl = words[0].length;
+  let sl = s.length;
+  let rightBorder = sl - wl * owl;
+
+
+  let start = 0;
+  let i = 0;
+  while (start <= rightBorder) {
+    console.log(s[i]);
+    if (i > rightBorder) {
+      start += 1;
+      i = start;
+    }else{
+      i += owl;
+    }
+  }
 
   return res;
 };
 // @lc code=end
 
 // test
-findSubstring("barfoothefoobarman",["foo","bar"])
+// findSubstring("barfoothefoobarman",["foo","bar"]) //[0,9]
+// findSubstring("wordgoodgoodgoodbestword", ["word", "good", "best", "good"]); // [8]
+// findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake",["fooo","barr","wing","ding","wing"]); //[13]
+// findSubstring("ababababab", ["ababa", "babab"]); //[0]
+findSubstring("foobarfoobars", ["foo", "bar"]) //[0,3,6]
 
 
