@@ -52,12 +52,40 @@ function findSubstring(s: string, words: string[]): number[] {
 
   let start = 0;
   let i = 0;
+
+  // 窗口滑动
   while (start <= rightBorder) {
-    console.log(s[i]);
+    let subStr = s.slice(i);
+    let tempMap: Record<string, number> = {}; // 临时的单词计数集合
+    let indexs:number[] = []; // 单词的索引集合
+    let flag: boolean = true;  // 代表符合条件
+    let deleteCount: number = 0; // 被删除位移动
+
+    // 遍历所有单词
+    for (let j = 0; j < wl; j++) {
+      const word = words[j];
+      const exp = new RegExp(word);
+      let index = subStr.search(exp);
+      subStr = subStr.replace(exp,"");
+      indexs.push(index+deleteCount);
+      deleteCount+=owl;
+      tempMap[word] = tempMap[word] ?? 0;
+      tempMap[word]++;
+    }
+
+    // 遍历是否所有单词都已经被覆盖
+    for (let j = 0; j < wl; j++) {
+      const key = words[j];
+      if (wordsCountMap[key] !== tempMap[key]) {
+          flag = false;
+          break;
+      }
+    }
+
     if (i > rightBorder) {
       start += 1;
       i = start;
-    }else{
+    } else {
       i += owl;
     }
   }
