@@ -23,6 +23,17 @@ function getIsArithmeticSequence(nums: number[]): null | number {
   }
 }
 
+function getSubstrPos(s: string, subString: string): number[] {
+  let regex = RegExp(subString, "g");
+  let isMatch;
+  const res: number[] = [];
+  while ((isMatch = regex.exec(s)) !== null) {
+    const { index } = isMatch;
+    res.push(index);
+  }
+  return res;
+}
+
 
 function findSubstring(s: string, words: string[]): number[] {
   if (words.length === 1) {
@@ -35,6 +46,7 @@ function findSubstring(s: string, words: string[]): number[] {
 
   let wordsCountMap: Record<string, number> = {};
 
+  // 计算所有单词的覆盖数
   words.forEach(word => {
     if (wordsCountMap[word]) {
       wordsCountMap[word]++;
@@ -57,29 +69,43 @@ function findSubstring(s: string, words: string[]): number[] {
   while (start <= rightBorder) {
     let subStr = s.slice(i);
     let tempMap: Record<string, number> = {}; // 临时的单词计数集合
-    let indexs:number[] = []; // 单词的索引集合
+    let indexs: number[] = []; // 单词的索引集合
     let flag: boolean = true;  // 代表符合条件
-    let deleteCount: number = 0; // 被删除位移动
 
     // 遍历所有单词
     for (let j = 0; j < wl; j++) {
       const word = words[j];
-      const exp = new RegExp(word);
-      let index = subStr.search(exp);
-      subStr = subStr.replace(exp,"");
-      indexs.push(index+deleteCount);
-      deleteCount+=owl;
       tempMap[word] = tempMap[word] ?? 0;
-      tempMap[word]++;
+      if (tempMap[word] === wordsCountMap[word]) {
+        break;
+      }
+      const pos: number[] = getSubstrPos(subStr, word);
+      if (wordsCountMap[word] > 1) {
+        pos.forEach(p => {
+          if (tempMap[word] <= wordsCountMap[word]) {
+            indexs.push(i + p);
+            tempMap[word]++;
+          }
+        })
+      } else {
+        indexs.push(i + pos[0]);
+        tempMap[word]++;
+      }
     }
 
     // 遍历是否所有单词都已经被覆盖
     for (let j = 0; j < wl; j++) {
       const key = words[j];
       if (wordsCountMap[key] !== tempMap[key]) {
-          flag = false;
-          break;
+        flag = false;
+        break;
       }
+    }
+
+    indexs.sort((x, y) => x - y);
+
+    if (flag && indexs.length === wl && indexs[0] - i === 0 && getIsArithmeticSequence(indexs) === owl && !(res.includes(indexs[0]))) {
+      res.push(indexs[0]);
     }
 
     if (i > rightBorder) {
@@ -95,10 +121,10 @@ function findSubstring(s: string, words: string[]): number[] {
 // @lc code=end
 
 // test
-// findSubstring("barfoothefoobarman",["foo","bar"]) //[0,9]
+findSubstring("barfoothefoobarman", ["foo", "bar"]) //[0,9]
 // findSubstring("wordgoodgoodgoodbestword", ["word", "good", "best", "good"]); // [8]
 // findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake",["fooo","barr","wing","ding","wing"]); //[13]
 // findSubstring("ababababab", ["ababa", "babab"]); //[0]
-findSubstring("foobarfoobars", ["foo", "bar"]) //[0,3,6]
+// findSubstring("foobarfoobars", ["foo", "bar"]) //[0,3,6]
 
 
