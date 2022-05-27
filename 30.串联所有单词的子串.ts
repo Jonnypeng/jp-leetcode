@@ -82,7 +82,7 @@ function findSubstring(s: string, words: string[]): number[] {
       const pos: number[] = getSubstrPos(subStr, word);
       if (wordsCountMap[word] > 1) {
         pos.forEach(p => {
-          if (tempMap[word] <= wordsCountMap[word]) {
+          if (tempMap[word] < wordsCountMap[word]) {
             indexs.push(i + p);
             tempMap[word]++;
           }
@@ -121,10 +121,11 @@ function findSubstring(s: string, words: string[]): number[] {
 // @lc code=end
 
 // test
-findSubstring("barfoothefoobarman", ["foo", "bar"]) //[0,9]
+// findSubstring("barfoothefoobarman", ["foo", "bar"]) //[0,9]
 // findSubstring("wordgoodgoodgoodbestword", ["word", "good", "best", "good"]); // [8]
 // findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake",["fooo","barr","wing","ding","wing"]); //[13]
-// findSubstring("ababababab", ["ababa", "babab"]); //[0]
+findSubstring("ababababab", ["ababa", "babab"]); //[0]
 // findSubstring("foobarfoobars", ["foo", "bar"]) //[0,3,6]
+// findSubstring("aaa",["a","a"]);
 
 
