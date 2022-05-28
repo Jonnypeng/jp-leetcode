@@ -27,13 +27,31 @@ function getSubstrPos(s: string, subString: string): number[] {
   let regex = RegExp(subString, "g");
   let isMatch;
   const res: number[] = [];
-  while ((isMatch = regex.exec(s)) !== null) {
-    const { index } = isMatch;
-    res.push(index);
+
+  let start = 0;
+  let owl = subString.length;
+  let sl = s.length;
+  let rightBorder = sl - owl;
+  let i = 0;
+  while (start <= rightBorder) {
+    let subStr = s.slice(i);
+    while ((isMatch = regex.exec(subStr)) !== null) {
+      let { index } = isMatch;
+      index += i;
+      if (!(res.includes(index))) {
+        res.push(index);
+      }
+    }
+    if (i > rightBorder) {
+      start += 1;
+      i = start;
+    } else {
+      i += owl;
+    }
   }
+
   return res;
 }
-
 
 function findSubstring(s: string, words: string[]): number[] {
   if (words.length === 1) {
