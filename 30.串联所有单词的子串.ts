@@ -78,61 +78,39 @@ function findSubstring(s: string, words: string[]): number[] {
   let owl = words[0].length;
   let sl = s.length;
   let rightBorder = sl - wl * owl;
+  let resMap: number[][] = []
 
 
   let start = 0;
   let i = 0;
 
   // 窗口滑动
-  while (start <= rightBorder) {
-    let subStr = s.slice(i);
-    let tempMap: Record<string, number> = {}; // 临时的单词计数集合
-    let indexs: number[] = []; // 单词的索引集合
-    let flag: boolean = true;  // 代表符合条件
+  let subStr = s.slice(i);
+  let indexs: number[] = []; // 单词的索引集合
+  let flag: boolean = true;  // 代表符合条件
 
-    // 遍历所有单词
-    for (let j = 0; j < wl; j++) {
-      const word = words[j];
-      tempMap[word] = tempMap[word] ?? 0;
-      if (tempMap[word] === wordsCountMap[word]) {
-        break;
-      }
-      const pos: number[] = getSubstrPos(subStr, word);
-      if (wordsCountMap[word] > 1) {
-        pos.forEach(p => {
-          if (tempMap[word] < wordsCountMap[word]) {
-            indexs.push(i + p);
-            tempMap[word]++;
-          }
-        })
-      } else {
-        indexs.push(i + pos[0]);
-        tempMap[word]++;
-      }
-    }
-
-    // 遍历是否所有单词都已经被覆盖
-    for (let j = 0; j < wl; j++) {
-      const key = words[j];
-      if (wordsCountMap[key] !== tempMap[key]) {
-        flag = false;
-        break;
-      }
-    }
-
-    indexs.sort((x, y) => x - y);
-
-    if (flag && indexs.length === wl && indexs[0] - i === 0 && getIsArithmeticSequence(indexs) === owl && !(res.includes(indexs[0]))) {
-      res.push(indexs[0]);
-    }
-
-    if (i > rightBorder) {
-      start += 1;
-      i = start;
-    } else {
-      i += owl;
-    }
+  // 遍历所有单词
+  for (let j = 0; j < wl; j++) {
+    const word = words[j];
+    const pos: number[] = getSubstrPos(s, word);
+    resMap.push(pos);
   }
+
+
+  // let rsl = resMap.length;
+  // let j = 0;
+  // let temp:number[] = []
+
+  // for (let i = 0; i < rsl; i++) {
+  //   let p = resMap[i].pop();
+  //   if(p){
+  //     temp.push(p);
+  //   }
+  // }
+  // console.log(temp);
+
+
+
 
   return res;
 };
