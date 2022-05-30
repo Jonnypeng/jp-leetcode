@@ -22,7 +22,7 @@ const backtrack46 = (n: number, output: number[], res: number[][], first: number
   }
   for (let i = first; i < n; i++) {
       swap(output, first, i);
-      backtrack(n, output, res, first + 1);
+      backtrack46(n, output, res, first + 1);
       swap(output, first, i);
   }
 }
@@ -36,7 +36,7 @@ function permute(nums: number[]): number[][] {
   }
 
   const n = nums.length;
-  backtrack(n, output, res, 0);
+  backtrack46(n, output, res, 0);
   return res;
 };
 

@@ -5,123 +5,62 @@
  */
 
 // @lc code=start
-/**
- * 判断数组是不是一个等差数列,如果是输出差值，如果不是，则输出false
- */
-function getIsArithmeticSequence(nums: number[]): null | number {
-  let r = true;
-  const _nums = [...nums];
-  for (let i = 1; i < _nums.length - 1; i++) {
-    if (_nums[i] - _nums[i - 1] !== _nums[i + 1] - _nums[i]) {
-      r = false;
-    }
-  }
-  if (r) {
-    return _nums[1] - _nums[0];
-  } else {
-    return null;
-  }
-}
-
-function getSubstrPos(s: string, subString: string): number[] {
-  let regex = RegExp(subString, "g");
-  let isMatch;
+function findSubstring(s: string, words: string[]): number[] {
   const res: number[] = [];
+  const dict: Map<string, number> = new Map();
+  const owl: number = words[0].length;
+  const wl: number = words.length;
+  const sl: number = s.length;
 
-  let start = 0;
-  let owl = subString.length;
-  let sl = s.length;
-  let rightBorder = sl - owl;
-  let i = 0;
-  while (start <= rightBorder) {
-    let subStr = s.slice(i);
-    while ((isMatch = regex.exec(subStr)) !== null) {
-      let { index } = isMatch;
-      index += i;
-      if (!(res.includes(index))) {
-        res.push(index);
+  for (let i = 0; i < wl; i++) {
+    const word = words[i];
+    const hasVal = dict.has(word);
+    if (!hasVal) {
+      dict.set(word, 0);
+    }
+    let num = dict.get(word) as number;
+    dict.set(word, num + 1)
+  }
+
+  for (let start = 0; start <= owl; start++) {
+    let count: number = 0;
+    const tempDict: Map<string, number> = new Map();
+
+    for (let arr of dict) {
+      tempDict.set(`${arr[0]}`, Number(`${arr[1]}`));
+    }
+
+    for (let j = start; j <= sl - owl; j += owl) {
+      let currentWord = s.slice(j, j + owl);
+      let currentWordVal: number = tempDict.get(currentWord) as number ?? 0;
+      tempDict.set(currentWord, currentWordVal - 1);
+
+      if (tempDict.get(currentWord) as number >= 0) {
+        count += 1;
+      }
+
+      const popStart = j - owl * wl;
+      if (popStart >= 0) {
+        const popWord: string = s.slice(popStart, popStart + owl);
+        let popWordVal = tempDict.get(popWord) ?? 0;
+          tempDict.set(popWord, popWordVal + 1);
+          if (tempDict.get(popWord) as number > 0) {
+            count -= 1;
+          }
+      }
+
+      if (count === wl) {
+        res.push(popStart + owl);
       }
     }
-    if (i > rightBorder) {
-      start += 1;
-      i = start;
-    } else {
-      i += owl;
-    }
   }
 
   return res;
-}
 
-function findSubstring(s: string, words: string[]): number[] {
-  if (words.length === 1) {
-    let index = s.indexOf(s);
-    if (index === -1) {
-      return [];
-    }
-    return [index];
-  }
-
-  let wordsCountMap: Record<string, number> = {};
-
-  // 计算所有单词的覆盖数
-  words.forEach(word => {
-    if (wordsCountMap[word]) {
-      wordsCountMap[word]++;
-    } else {
-      wordsCountMap[word] = 1;
-    }
-  })
-
-  const res: number[] = [];
-  let wl = words.length;
-  let owl = words[0].length;
-  let sl = s.length;
-  let rightBorder = sl - wl * owl;
-  let resMap: number[][] = []
-
-
-  let start = 0;
-  let i = 0;
-
-  // 窗口滑动
-  let subStr = s.slice(i);
-  let indexs: number[] = []; // 单词的索引集合
-  let flag: boolean = true;  // 代表符合条件
-
-  // 遍历所有单词
-  for (let j = 0; j < wl; j++) {
-    const word = words[j];
-    const pos: number[] = getSubstrPos(s, word);
-    resMap.push(pos);
-  }
-
-
-  // let rsl = resMap.length;
-  // let j = 0;
-  // let temp:number[] = []
-
-  // for (let i = 0; i < rsl; i++) {
-  //   let p = resMap[i].pop();
-  //   if(p){
-  //     temp.push(p);
-  //   }
-  // }
-  // console.log(temp);
-
-
-
-
-  return res;
 };
 // @lc code=end
 
+
 // test
 // findSubstring("barfoothefoobarman", ["foo", "bar"]) //[0,9]
-// findSubstring("wordgoodgoodgoodbestword", ["word", "good", "best", "good"]); // [8]
-// findSubstring("lingmindraboofooowingdingbarrwingmonkeypoundcake",["fooo","barr","wing","ding","wing"]); //[13]
-findSubstring("ababababab", ["ababa", "babab"]); //[0]
-// findSubstring("foobarfoobars", ["foo", "bar"]) //[0,3,6]
-// findSubstring("aaa",["a","a"]);
-
-
+// findSubstring("wordgoodgoodgoodbestword",["word","good","best","good"]) // [8]
