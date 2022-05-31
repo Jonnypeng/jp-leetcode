@@ -108,14 +108,14 @@ class RandomizedSet {
 // @lc code=end
 
 // test 
-var obj = new RandomizedSet();
-obj.insert(1);
-obj.remove(2);
-obj.insert(2);
-obj.getRandom();
-obj.remove(1);
-obj.insert(2);
-obj.getRandom();
+// var obj = new RandomizedSet();
+// obj.insert(1);
+// obj.remove(2);
+// obj.insert(2);
+// obj.getRandom();
+// obj.remove(1);
+// obj.insert(2);
+// obj.getRandom();
 // obj.insert(1);
 // obj.insert(2);
 // obj.remove(2);
