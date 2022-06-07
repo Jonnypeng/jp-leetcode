@@ -9,6 +9,7 @@
 // 判断两个数组的值对应的索引是否具有相交的特征，并返回相交的新数组或大数组
 const intersectionOfIntervals = function (a: number[], b: number[]): number[] | null {
   let m: number[] = [];
+
   // b 与 a 相交 返回全新的数组
   if (b[0] <= a[1] && b[1] >= a[1]) {
     m[0] = a[0];
@@ -27,7 +28,7 @@ const intersectionOfIntervals = function (a: number[], b: number[]): number[] | 
 
 
 function merge(intervals: number[][]): number[][] {
-  const _intervals = [...intervals];
+  let _intervals = [...intervals];
   const n = _intervals.length;
   const res: number[][] = [];
 
@@ -51,14 +52,17 @@ function merge(intervals: number[][]): number[][] {
     const nums = intersectionOfIntervals(a, b);
     if (nums) {
       if (nums[1] > a[1]) {
-        _intervals.splice(0, 2);
+        _intervals.shift();
+        _intervals.shift();
         _intervals.unshift(nums);
       } else {
-        _intervals.splice(1, 1);
+        let a0 = _intervals.shift() as number[];
+        _intervals.shift();
+        _intervals.unshift(a0);
       }
     } else {
       res.push(a);
-      _intervals.splice(0, 1);
+      _intervals.shift();
     }
   }
 
@@ -68,7 +72,6 @@ function merge(intervals: number[][]): number[][] {
 
 
 // test
-// merge([[0, 3], [2, 10], [3, 9]])
 // merge([[1, 3], [2, 6], [8, 10], [15, 18]]) //[[1,6],[8,10],[15,18]]
 // merge([[1,4],[0,2],[3,5]]) //[0,5]
 // merge([[1, 4], [0, 2], [3, 5]]) //[[0,5]]
