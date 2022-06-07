@@ -6,83 +6,60 @@
 
 // @lc code=start
 
-// 判断两个数组是否具有相交的特征，并返回相交的特性，并返回合并的数组
-function intersectionOfIntervals(a: number[], b: number[], callBack: (state: boolean) => void): number[] | null {
+// 判断两个数组的值对应的索引是否具有相交的特征，并返回相交的新数组或大数组
+const intersectionOfIntervals = function (a: number[], b: number[]): number[] | null {
   let m: number[] = [];
-  // b 与 a 相交
+  // b 与 a 相交 返回全新的数组
   if (b[0] <= a[1] && b[1] >= a[1]) {
     m[0] = a[0];
     m[1] = b[1];
-    callBack(true);
     return m;
   }
-  // b在a中
+  // b在a中 返回a
   if (b[0] <= a[1] && b[1] <= a[1]) {
     m[0] = a[0];
     m[1] = a[1];
-    callBack(false);
     return m;
   }
-  // b[0] > a[1]
+  // 当b[0] > a[1]
   return null;
 }
 
+
 function merge(intervals: number[][]): number[][] {
-  const n = intervals.length;
+  const _intervals = [...intervals];
+  const n = _intervals.length;
   const res: number[][] = [];
-  const mergedIndex: number[] = [];
 
   if (n === 1) {
-    res.push(intervals[0]);
+    res.push(_intervals[0]);
     return res;
   }
 
   // 首先按照起点进行排序
-  intervals.sort((a, b) => {
+  _intervals.sort((a, b) => {
     return a[0] - b[0];
   })
 
-  const callBack = (l: number, r: number) => {
-    return (isIntersection: boolean) => {
-      if (isIntersection) {
-        mergedIndex.push(l);
-        mergedIndex.push(r);
-        return;
-      }
-      mergedIndex.push(r);
+  while (_intervals.length > 0) {
+    if (_intervals.length === 1) {
+      res.push(_intervals[0]);
+      break;
     }
-  }
-
-  for (let i = 0; i < 2; i++) {
-    let left = i;
-    let right = left + 1;
-    while (right < n) {
-      if (mergedIndex.includes(left)) {
-        left++;
-        continue;
+    let a = _intervals[0];
+    let b = _intervals[1];
+    const nums = intersectionOfIntervals(a, b);
+    if (nums) {
+      if (nums[1] > a[1]) {
+        _intervals.splice(0, 2);
+        _intervals.unshift(nums);
+      } else {
+        _intervals.splice(1, 1);
       }
-      if (mergedIndex.includes(right)) {
-        right++;
-        continue;
-      }
-      const a = intervals[left];
-      const b = intervals[right];
-      const cb = callBack(left, right);
-      const nums = intersectionOfIntervals(a, b, cb);
-      if (nums) {
-        res.push(nums);
-        mergedIndex.push(left, right);
-      }
-      left++;
-      right++;
+    } else {
+      res.push(a);
+      _intervals.splice(0, 1);
     }
-  }
-
-  for (let i = 0; i < n; i++) {
-    if(mergedIndex.includes(i)){
-      continue;
-    }
-    res.push(intervals[i]);
   }
 
   return res;
@@ -94,4 +71,4 @@ function merge(intervals: number[][]): number[][] {
 // merge([[0, 3], [2, 10], [3, 9]])
 // merge([[1, 3], [2, 6], [8, 10], [15, 18]]) //[[1,6],[8,10],[15,18]]
 // merge([[1,4],[0,2],[3,5]]) //[0,5]
-merge([[1,4],[0,2],[3,5]]) //[[0,5]]
+// merge([[1, 4], [0, 2], [3, 5]]) //[[0,5]]
