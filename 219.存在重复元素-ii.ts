@@ -23,4 +23,4 @@ function containsNearbyDuplicate(nums: number[], k: number): boolean {
 };
 // @lc code=end
 
-containsNearbyDuplicate([1, 0, 1, 1], 1);
+// containsNearbyDuplicate([1, 0, 1, 1], 1);
