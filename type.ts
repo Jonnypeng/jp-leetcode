@@ -1,6 +1,6 @@
-export interface ListNode {
-  val: number;
-  next: ListNode | null;
+export interface ListNode<T extends any> {
+  val: T;
+  next: ListNode<T> | null;
 }
 
 export interface TreeNode {

@@ -1,3 +1,4 @@
+// import { ListNode } from './type';
 /*
  * @lc app=leetcode.cn id=56 lang=typescript
  *
@@ -6,31 +7,23 @@
 
 // @lc code=start
 
-// 判断两个数组的值对应的索引是否具有相交的特征，并返回相交的新数组或大数组
-const intersectionOfIntervals = function (a: number[], b: number[]): number[] | null {
-  let m: number[] = [];
 
-  // b 与 a 相交 返回全新的数组
-  if (b[0] <= a[1] && b[1] >= a[1]) {
-    m[0] = a[0];
-    m[1] = b[1];
-    return m;
-  }
-  // b在a中 返回a
-  if (b[0] <= a[1] && b[1] <= a[1]) {
-    m[0] = a[0];
-    m[1] = a[1];
-    return m;
-  }
-  // 当b[0] > a[1]
-  return null;
-}
 
 
 function merge(intervals: number[][]): number[][] {
   let _intervals = [...intervals];
   const n = _intervals.length;
   const res: number[][] = [];
+
+  // 判断两个数组的值对应的索引是否具有相交的特征，并返回相交的新数组或大数组
+  const intersectionOfIntervals = function (a: number[], b: number[]): number[] | null {
+    if (b[0] <= a[1]) {
+      let start:number = a[0];
+      let end:number = Math.max(b[1],a[1]);
+      return [start,end];
+    }
+    return null;
+  }
 
   if (n === 1) {
     res.push(_intervals[0]);
@@ -56,9 +49,9 @@ function merge(intervals: number[][]): number[][] {
         _intervals.shift();
         _intervals.unshift(nums);
       } else {
-        let a0 = _intervals.shift() as number[];
+        let a0 = _intervals[0];
         _intervals.shift();
-        _intervals.unshift(a0);
+        _intervals[0] = a0;
       }
     } else {
       res.push(a);
