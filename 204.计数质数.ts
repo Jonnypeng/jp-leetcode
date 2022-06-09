@@ -6,34 +6,30 @@
 
 // @lc code=start
 
-function isPrimes(n: number): boolean {
-  if (n === 1) {
-    return false;
-  }
-  if (n === 2) {
-    return true;
-  }
-  let res: boolean = true;
-  for (let i = 2; i <= Math.sqrt(n); i++) {
-    if (n % i === 0) {
-      res = false;
-      break;
-    }
-  }
-  return res;
-}
-
 function countPrimes(n: number): number {
-    let count:number = 0;
+  let count: number = 0;
+  const dict: boolean[] = new Array(n);// 合数字典
 
-    for(let i = 1;i<n;i++){
-      if(isPrimes(i)){
-        count++;
-      }
+  dict.fill(false); // 初始化为false
+  dict[0] = true;
+  dict[1] = true;
+
+
+  for (let i = 2; i * i < n; i++) {
+    for (let j = i * i; j <= n; j += i) {
+      dict[j] = true;
     }
+  }
 
-    return count;
+  for (let i = 1; i < dict.length; i++) {
+    if (!dict[i]) {
+      count++;
+    }
+  }
+
+  return count;
 };
 // @lc code=end
 
-countPrimes(10); //4
+// countPrimes(10); //4
+countPrimes(2); //0
