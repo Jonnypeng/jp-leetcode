@@ -1,7 +1,7 @@
 /*
- * @lc app=leetcode.cn id=100 lang=typescript
+ * @lc app=leetcode.cn id=572 lang=typescript
  *
- * [100] 相同的树
+ * [572] 另一棵树的子树
  */
 
 // @lc code=start
@@ -19,12 +19,6 @@
  * }
  */
 
-interface TreeNode {
-  val: number;
-  left: TreeNode | null;
-  right: TreeNode | null;
-}
-
 function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
   const dict: Map<('p' | 'q'), string> = new Map();
 
@@ -32,14 +26,14 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
   dict.set('q', ``);
 
   const dfs = (node: TreeNode | null, tag: 'p' | 'q') => {
-    let val:string = dict.get(tag) as string;
+    let val: string = dict.get(tag) as string;
 
     if (!node) {
-      val+= '-null';
+      val += '-null';
       dict.set(tag, val);
       return;
     } else {
-      val+=`-${node.val}`;
+      val += `-${node.val}`;
       dict.set(tag, val);
     }
 
@@ -51,6 +45,36 @@ function isSameTree(p: TreeNode | null, q: TreeNode | null): boolean {
   dfs(q, 'q');
 
   return dict.get('p') === dict.get('q');
+};
+
+function isSubtree(root: TreeNode | null, subRoot: TreeNode | null): boolean {
+  let r: boolean = false;
+
+  if (!root) {
+    return false;
+  }
+
+  const dfs = (node: typeof root) => {
+  
+    const isSame = isSameTree(node,subRoot);
+    if(isSame){
+      r = true;
+      return;
+    }
+
+    if (node.left && !r) {
+      dfs(node.left);
+    }
+
+    if (node.right && !r) {
+      dfs(node.right);
+    }
+  }
+
+  dfs(root);
+
+  return r;
+
 };
 // @lc code=end
 

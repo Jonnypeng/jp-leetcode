@@ -6,6 +6,7 @@
 
 // @lc code=start
 
+
 function swap<T>(arr: T[], index1: number, index2: number) {
   const tempElement = arr[index1];
   arr[index1] = arr[index2];
@@ -13,32 +14,29 @@ function swap<T>(arr: T[], index1: number, index2: number) {
   return arr;
 }
 
+let count: number = 0;
 
-function dfs(index: number, nums: number[], n: number) {
-  if (index === n) {
-    return;
+const backtrack46 = (n: number, output: number[], res: number[][], first: number) => {
+  if (first === n) {
+      res.push([...output]);
   }
-  const temp: number[] = [nums[index]];
-  const arr: number[] = [...nums];
-
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr.length; j++) {
-      swap(arr,i,j);
-    }
+  for (let i = first; i < n; i++) {
+      swap(output, first, i);
+      backtrack46(n, output, res, first + 1);
+      swap(output, first, i);
   }
-  console.log(arr);
-
-  dfs(index++, nums, n);
-  // dfs(index++, nums, n);
 }
 
 function permute(nums: number[]): number[][] {
   const res: number[][] = [];
   const output: number[] = [];
-  const temp: number[] = [...nums];
 
-  dfs(1,  nums, nums.length);
+  for (let num of nums) {
+      output.push(num);
+  }
 
+  const n = nums.length;
+  backtrack46(n, output, res, 0);
   return res;
 };
 
