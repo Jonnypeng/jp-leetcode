@@ -1,4 +1,4 @@
-// package main
+package leetcode
 
 /*
  * @lc app=leetcode.cn id=189 lang=golang
@@ -26,7 +26,3 @@ func rotate(nums []int, k int) {
 }
 
 // @lc code=end
-
-// func main() {
-// 	rotate([]int{1, 2, 3, 4, 5, 6, 7}, 3)
-// }
