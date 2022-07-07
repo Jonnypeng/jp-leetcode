@@ -43,7 +43,7 @@ func reverse(x int) int {
 
 // @lc code=end
 
-func main() {
-	//reverse(123)
-	reverse(1534236469)
-}
+// func main() {
+// 	//reverse(123)
+// 	reverse(1534236469)
+// }
