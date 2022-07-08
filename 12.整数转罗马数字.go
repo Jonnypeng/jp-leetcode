@@ -4,8 +4,6 @@
  * [12] 整数转罗马数字
  */
 
-package jp_leetcode
-
 // @lc code=start
 func intToRoman(num int) string {
 	var temp int = num

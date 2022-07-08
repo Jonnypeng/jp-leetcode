@@ -1,4 +1,4 @@
-package jp_leetcode
+
 
 import (
 	"math"

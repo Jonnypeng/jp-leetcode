@@ -1,4 +1,4 @@
-package jp_leetcode
+
 
 /*
  * @lc app=leetcode.cn id=17 lang=golang

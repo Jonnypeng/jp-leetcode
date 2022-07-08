@@ -1,4 +1,3 @@
-package jp_leetcode
 
 /*
  * @lc app=leetcode.cn id=5 lang=golang
