@@ -1,4 +1,4 @@
-// package main
+package main
 
 // import (
 // 	"math"
@@ -14,48 +14,22 @@
 // @lc code=start
 func firstMissingPositive(nums []int) int {
 	n := len(nums)
-	res := math.MinInt
+	dict := make(map[int]int)
 
-	// 边界条件，当数组的长度为1，且为负数时候，最小的正整数一定为1
-	if n == 1 && nums[0] <= 0 {
-		res = 1
-		return res
+	// 将数组的值映射到map中，方便1:1读取
+	for _, v := range nums {
+		dict[v] = v
 	}
 
-	// 排序数组
-	sort.Ints(nums)
-
-	// 边界条件1,当最小数大于1时，最小正整数一定为1
-	// 边界条件2，当最大值为负数时，最小正整数一定为1
-	if nums[0] > 1 || nums[n-1] <= 0 {
-		res = 1
-		return res
-	}
-
-	// 双指针进行比对
-	for i, j := 0, 1; j < n; i, j = i+1, j+1 {
-		// 当双指针的值相等，则各前进1位
-		if nums[i] == nums[j] {
-			continue
-		}
-		// 当负数与正数之间缺少1时，最小正整数一定为1
-		if nums[i] < 0 && nums[j] > 1 {
-			res = 1
-			break
-		}
-		// 当两个正数递进缺1时，则找到缺少的最小整数
-		if nums[i]+1 != nums[j] && nums[i]+1 > 0 {
-			res = nums[i] + 1
-			break
+	// 最优是1...n都是nums的value，若不是，则表示缺少此值
+	for i := 1; i <= n; i++ {
+		if _, ok := dict[i]; !ok {
+			return i
 		}
 	}
 
-	// 找到最大边界的正整数
-	if res == math.MinInt {
-		res = nums[n-1] + 1
-	}
-
-	return res
+	// 当没有找到缺少的值时，说明最小正整数是最后一位
+	return n + 1
 
 }
 
