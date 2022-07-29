@@ -16,6 +16,6 @@ insert into ActorDirector (actor_id, director_id, timestamp) values (2, 1, 6);
 
 -- @lc code=start
 # Write your MySQL query statement below
-SELECT SUBSTRING_INDEX(Main.V,"-",1) as actor_id,SUBSTRING_INDEX(Main.V,"-",-1) as director_id  from (SELECT CONCAT(actor_id,"-",director_id) as V,COUNT(ActorDirector.timestamp) as C from ActorDirector GROUP By V) as Main WHERE Main.C >=3;
+SELECT ActorDirector.actor_id, ActorDirector.director_id FROM ActorDirector GROUP BY actor_id,director_id HAVING COUNT(timestamp) >= 3;
 -- @lc code=end
 
