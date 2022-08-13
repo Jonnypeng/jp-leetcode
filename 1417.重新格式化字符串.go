@@ -86,7 +86,7 @@ func reformat(s string) string {
 
 // @lc code=end
 
-func main() {
-	reformat("swsa23313sd")
+// func main() {
+// 	reformat("swsa23313sd")
 
-}
+// }
