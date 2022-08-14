@@ -42,7 +42,3 @@ func groupThePeople(groupSizes []int) [][]int {
 }
 
 // @lc code=end
-
-func main() {
-	groupThePeople([]int{3, 3, 3, 3, 3, 1, 3})
-}
