@@ -27,7 +27,3 @@ func maxChunksToSorted(arr []int) int {
 }
 
 // @lc code=end
-
-func main() {
-	maxChunksToSorted([]int{2, 1, 3, 4, 4})
-}
