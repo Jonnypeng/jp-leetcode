@@ -1,1 +1,1 @@
-刷题，来自 (leetcode)[https://leetcode.cn/]
+刷题，来自 [leetcode](https://leetcode.cn/)
