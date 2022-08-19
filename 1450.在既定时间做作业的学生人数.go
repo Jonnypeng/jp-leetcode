@@ -10,7 +10,7 @@ package main
 func busyStudent(startTime []int, endTime []int, queryTime int) int {
 	count := 0
 
-	for i, _ := range startTime {
+	for i := range startTime {
 		if queryTime >= startTime[i] && queryTime <= endTime[i] {
 			count++
 		}
