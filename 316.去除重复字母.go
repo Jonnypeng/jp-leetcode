@@ -40,6 +40,6 @@ func removeDuplicateLetters(s string) string {
 
 // @lc code=end
 
-func main() {
-	removeDuplicateLetters("bbcaac") //"bac"
-}
+// func main() {
+// 	removeDuplicateLetters("bbcaac") //"bac"
+// }

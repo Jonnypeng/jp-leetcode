@@ -27,4 +27,4 @@ function removeDuplicateLetters(s: string): string {
 };
 // @lc code=end
 
-removeDuplicateLetters("bcabc");
+// removeDuplicateLetters("bcabc");
