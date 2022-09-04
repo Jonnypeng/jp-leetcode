@@ -10,52 +10,26 @@ package main
 
 func isSpe(mat *[][]int, i int, j int, n int) bool {
 	_mat := *mat
-	res := false
+	res := true
 
-	left, up, right, down := false, false, false, false
-
-	if i-1 == -1 {
-		up = true
-	} else {
-		up = _mat[i-1][j] == 0
+	for index, _ := range _mat {
+		if index == i {
+			continue
+		}
+		if _mat[index][j] != 0 {
+			res = false
+			break
+		}
 	}
 
-	if i+1 > n-1 {
-		down = true
-	} else {
-		down = _mat[i+1][j] == 0
-	}
-
-	if j-1 == -1 {
-		left = true
-	} else {
-		left = _mat[i][j-1] == 0
-	}
-
-	if j+1 > n-1 {
-		right = true
-	} else {
-		right = _mat[i][j+1] == 0
-	}
-
-	if !up {
-		up = _mat[i-1][j] == 0
-	}
-
-	if !down {
-		down = _mat[i+1][j] == 0
-	}
-
-	if !right {
-		right = _mat[i][j+1] == 0
-	}
-
-	if !left {
-		left = _mat[i][j-1] == 0
-	}
-
-	if left && right && up && down {
-		res = true
+	for index, _ := range _mat[i] {
+		if index == j {
+			continue
+		}
+		if _mat[i][index] != 0 {
+			res = false
+			break
+		}
 	}
 
 	return res
@@ -83,6 +57,6 @@ func numSpecial(mat [][]int) int {
 
 // @lc code=end
 
-func main() {
-	numSpecial([][]int{{1, 0, 0}, {0, 0, 1}, {1, 0, 0}})
-}
+// func main() {
+// 	numSpecial([][]int{{1, 0, 0}, {0, 0, 1}, {1, 0, 0}}) //
+// }
