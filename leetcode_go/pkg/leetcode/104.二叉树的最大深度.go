@@ -1,4 +1,10 @@
+package leetcode
 
+import (
+	"leetcode/pkg/structures"
+)
+
+type TreeNode = structures.TreeNode
 
 /*
  * @lc app=leetcode.cn id=104 lang=golang
