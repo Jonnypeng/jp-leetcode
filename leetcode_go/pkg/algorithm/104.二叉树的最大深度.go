@@ -1,10 +1,16 @@
 package algorithm
 
+import (
+	"leetcode/pkg/l_types"
+)
+
 /*
  * @lc app=leetcode.cn id=104 lang=golang
  *
  * [104] 二叉树的最大深度
  */
+
+type TreeNode = l_types.TreeNode
 
 // @lc code=start
 /**
