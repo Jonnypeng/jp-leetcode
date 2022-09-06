@@ -7,10 +7,38 @@ package algorithm
  */
 
 // @lc code=start
+
+func noRepeat(s string, m_dict *map[string]int) int {
+	if _, ok := (*m_dict)[s]; ok {
+		return (*m_dict)[s]
+	}
+	dict := make(map[string]int, 0)
+	res := 0
+	for _, v := range s {
+		ch := string(v)
+		if _, ok := (dict)[ch]; !ok {
+			(dict)[ch] = 1
+		} else {
+			(dict)[ch] = 0
+		}
+	}
+	for _, v := range dict {
+		res += v
+	}
+	(*m_dict)[s] = res
+	return res
+}
+
 func uniqueLetterString(s string) int {
 	dict := make(map[string]int, 0)
+	m_dict := make(map[string]int, 0)
 	n := len(s)
-	l := n - 2
+
+	if n == 1 {
+		return 1
+	}
+
+	l := 0
 	start := 0
 	end := l
 	finsed := false
@@ -20,15 +48,15 @@ func uniqueLetterString(s string) int {
 		for end < n {
 			ch := s[start : end+1]
 			if _, ok := dict[ch]; !ok {
-				dict[ch] = len(ch)
+				dict[ch] = noRepeat(ch, &m_dict)
 			} else {
-				dict[ch] = 0
+				dict[ch] += m_dict[ch]
 			}
 			start++
 			end++
 			if end == n {
-				l--
-				if l == -1 {
+				l++
+				if l == n {
 					finsed = true
 					break
 				}
@@ -41,7 +69,7 @@ func uniqueLetterString(s string) int {
 	for _, v := range dict {
 		res += v
 	}
-	res += n
+	// res += 1
 	return res
 }
 
