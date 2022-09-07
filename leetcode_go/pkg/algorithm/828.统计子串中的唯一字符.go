@@ -50,7 +50,7 @@ func uniqueLetterString(s string) int {
 			if _, ok := dict[ch]; !ok {
 				dict[ch] = noRepeat(ch, &m_dict)
 			} else {
-				dict[ch] += m_dict[ch]
+				dict[ch] = noRepeat(ch, &m_dict)
 			}
 			start++
 			end++
@@ -69,7 +69,6 @@ func uniqueLetterString(s string) int {
 	for _, v := range dict {
 		res += v
 	}
-	// res += 1
 	return res
 }
 
