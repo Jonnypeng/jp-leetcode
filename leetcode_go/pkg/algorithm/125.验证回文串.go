@@ -21,10 +21,14 @@ func isPalindrome(s string) bool {
 	str = pattern.ReplaceAllString(str, "")
 	str = strings.ToLower(str)
 	n := len(str)
-	for i := n - 1; i >= 0; i-- {
-		ch := str[i]
-		res += string(ch)
+	if n == 0 {
+		return true
 	}
+	strArr := strings.Split(str, "")
+	for i := 0; i <= (n-1)/2; i++ {
+		strArr[i], strArr[(n-1)-i] = strArr[(n-1)-i], strArr[i]
+	}
+	res = strings.Join(strArr, "")
 	return res == str
 }
 

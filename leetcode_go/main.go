@@ -3,7 +3,7 @@ package main
 import "leetcode/pkg/algorithm"
 
 func main() {
-	algorithm.IsPalindrome("ab_a")
+	algorithm.IsPalindrome("abcde")
 	// algorithm.CountAndSay(5)
 	// algorithm.UniqueLetterString("ABAB") // 12
 	// algorithm.UniqueLetterString("ABA") // 8
