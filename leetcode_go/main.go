@@ -3,7 +3,8 @@ package main
 import "leetcode/pkg/algorithm"
 
 func main() {
-	algorithm.Jump([]int{2, 3, 1}) //1
+	algorithm.MostFrequentEven([]int{29, 47, 21, 41, 13, 37, 25, 7})
+	// algorithm.Jump([]int{2, 3, 1}) //1
 	// algorithm.IsPalindrome("abcde")
 	// algorithm.CountAndSay(5)
 	// algorithm.UniqueLetterString("ABAB") // 12
