@@ -33,6 +33,10 @@ func maximumSwap(num int) int {
 			end = start + 1
 			continue
 		}
+		if strArr[start] > strArr[end] {
+			end++
+			continue
+		}
 		strArr[start], strArr[end] = strArr[end], strArr[start]
 		res := strings.Join(strArr, "")
 		if res > maxStr {
