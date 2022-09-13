@@ -3,7 +3,10 @@ package main
 import "leetcode/pkg/algorithm"
 
 func main() {
-	algorithm.SpecialArray([]int{0, 4, 3, 0, 4})
+	algorithm.MaximumSwap(10) //10
+	// algorithm.MaximumSwap(12) //1
+	// algorithm.MaximumSwap(1993) //9913
+	// algorithm.SpecialArray([]int{0, 4, 3, 0, 4})
 	// algorithm.MincostToHireWorkers([]int{3, 1, 10, 10, 1}, []int{4, 8, 2, 2, 7}, 3) //30.66667
 	// algorithm.MincostToHireWorkers([]int{10, 20, 5}, []int{70, 50, 30}, 2)
 	// algorithm.PartitionString("gizfdfri") // 2
