@@ -42,3 +42,5 @@ function permute(nums: number[]): number[][] {
 
 // @lc code=end
 
+
+permute([1,2,3,4,5])
