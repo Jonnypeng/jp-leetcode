@@ -20,7 +20,7 @@ import "math"
 func mostFrequentEven(nums []int) int {
 	ans := make(map[int]int)
 	maxCount := 0
-	res := math.MaxInt
+	res := math.MaxInt32
 
 	for _, v := range nums {
 		if v%2 == 0 {
@@ -39,7 +39,7 @@ func mostFrequentEven(nums []int) int {
 		}
 	}
 
-	if res == math.MaxInt {
+	if res == math.MaxInt32 {
 		res = -1
 	}
 

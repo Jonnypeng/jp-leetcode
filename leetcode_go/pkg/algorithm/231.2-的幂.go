@@ -10,7 +10,7 @@ import "math"
 
 // @lc code=start
 func isPowerOfTwo(n int) bool {
-	var res int = math.MinInt
+	var res int = math.MinInt32
 
 	for x := 0; res < n; x++ {
 		res = int(math.Pow(2.0, float64(x)))

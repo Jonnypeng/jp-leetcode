@@ -19,7 +19,7 @@ import (
 func minimumAbsDifference(arr []int) [][]int {
 	res := [][]int{}
 	n := len(arr)
-	minOffSet := math.MaxInt
+	minOffSet := math.MaxInt32
 	sort.Ints(arr)
 
 	for i, j := 0, 1; j < n; {

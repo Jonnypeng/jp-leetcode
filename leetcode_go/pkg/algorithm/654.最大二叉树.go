@@ -34,7 +34,7 @@ func makeNode(nums *[]int) *TreeNode {
 
 // 查询 最大值，左数组，有数组
 func findMaxVal(nums *[]int) (maxVal int, leftArr []int, rightArr []int) {
-	val := math.MinInt
+	val := math.MinInt32
 	index := -1
 	for i, v := range *nums {
 		if v > val {

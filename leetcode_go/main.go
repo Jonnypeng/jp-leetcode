@@ -3,7 +3,12 @@ package main
 import "leetcode/pkg/algorithm"
 
 func main() {
-	algorithm.MaximumSwap(10) //10
+	algorithm.SpiralOrder([][]int{
+		{1, 2, 3, 4},
+		{5, 6, 7, 8},
+		{9, 10, 11, 12},
+	})
+	// algorithm.MaximumSwap(10) //10
 	// algorithm.MaximumSwap(12) //1
 	// algorithm.MaximumSwap(1993) //9913
 	// algorithm.SpecialArray([]int{0, 4, 3, 0, 4})
