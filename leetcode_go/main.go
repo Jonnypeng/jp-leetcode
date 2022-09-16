@@ -1,6 +1,18 @@
 package main
 
+import (
+	"leetcode/pkg/algorithm"
+	"leetcode/pkg/l_types"
+)
+
 func main() {
+	algorithm.ReContruct(&l_types.ListNode{
+		Val: 2,
+		Next: &l_types.ListNode{
+			Val:  4,
+			Next: nil,
+		},
+	})
 	// algorithm.RotateRight(&l_types.ListNode{
 	// 	Val: 1,
 	// 	Next: &l_types.ListNode{
