@@ -1,11 +1,7 @@
 package main
 
-import (
-	"leetcode/pkg/algorithm"
-)
-
 func main() {
-	algorithm.ExplorationSupply([]int{2, 5, 8, 14, 17}, []int{1, 14, 11, 2})
+	// algorithm.ExplorationSupply([]int{2, 5, 8, 14, 17}, []int{1, 14, 11, 2})
 	// algorithm.ReContruct(&l_types.ListNode{
 	// 	Val: 2,
 	// 	Next: &l_types.ListNode{
