@@ -17,7 +17,7 @@ func isPrefixOfWord(sentence string, searchWord string) int {
 	stringArr := strings.Split(sentence, " ")
 	pattern := regexp.MustCompile("^" + searchWord)
 
-	for i, _ := range stringArr {
+	for i := range stringArr {
 		if pattern.MatchString(stringArr[i]) {
 			res = i + 1
 			break

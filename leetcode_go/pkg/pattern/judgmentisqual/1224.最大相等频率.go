@@ -30,8 +30,8 @@ func JudgmentIsQual(nums []int) bool {
 	return isQual
 }
 
-func maxEqualFreq(nums []int) int {
+// func maxEqualFreq(nums []int) int {
 
-}
+// }
 
 // @lc code=end

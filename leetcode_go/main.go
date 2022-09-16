@@ -2,17 +2,17 @@ package main
 
 import (
 	"leetcode/pkg/algorithm"
-	"leetcode/pkg/l_types"
 )
 
 func main() {
-	algorithm.ReContruct(&l_types.ListNode{
-		Val: 2,
-		Next: &l_types.ListNode{
-			Val:  4,
-			Next: nil,
-		},
-	})
+	algorithm.ExplorationSupply([]int{2, 5, 8, 14, 17}, []int{1, 14, 11, 2})
+	// algorithm.ReContruct(&l_types.ListNode{
+	// 	Val: 2,
+	// 	Next: &l_types.ListNode{
+	// 		Val:  4,
+	// 		Next: nil,
+	// 	},
+	// })
 	// algorithm.RotateRight(&l_types.ListNode{
 	// 	Val: 1,
 	// 	Next: &l_types.ListNode{
