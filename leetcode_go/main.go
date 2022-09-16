@@ -1,9 +1,16 @@
 package main
 
-import "leetcode/pkg/algorithm"
-
 func main() {
-	algorithm.GenerateMatrix(3)
+	// algorithm.RotateRight(&l_types.ListNode{
+	// 	Val: 1,
+	// 	Next: &l_types.ListNode{
+	// 		Val: 2,
+	// 		Next: &l_types.ListNode{
+	// 			Val:  3,
+	// 			Next: nil,
+	// 		},
+	// 	},
+	// }, 2)
 	// algorithm.SpiralOrder([][]int{
 	// 	{1, 2, 3, 4},
 	// 	{5, 6, 7, 8},
