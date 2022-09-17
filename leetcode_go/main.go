@@ -1,9 +1,12 @@
 package main
 
-import "leetcode/pkg/algorithm"
+import (
+	"leetcode/pkg/algorithm"
+	"leetcode/pkg/l_types"
+)
 
 func main() {
-	algorithm.MaxLengthBetweenEqualCharacters("rimkibmvpnhlgtdkazshyilqmywn") //21
+	// algorithm.MaxLengthBetweenEqualCharacters("rimkibmvpnhlgtdkazshyilqmywn") //21
 	// algorithm.ExplorationSupply([]int{2, 5, 8, 14, 17}, []int{1, 14, 11, 2})
 	// algorithm.ReContruct(&l_types.ListNode{
 	// 	Val: 2,
@@ -12,16 +15,16 @@ func main() {
 	// 		Next: nil,
 	// 	},
 	// })
-	// algorithm.RotateRight(&l_types.ListNode{
-	// 	Val: 1,
-	// 	Next: &l_types.ListNode{
-	// 		Val: 2,
-	// 		Next: &l_types.ListNode{
-	// 			Val:  3,
-	// 			Next: nil,
-	// 		},
-	// 	},
-	// }, 2)
+	algorithm.RotateRight(&l_types.ListNode{
+		Val: 0,
+		Next: &l_types.ListNode{
+			Val: 1,
+			Next: &l_types.ListNode{
+				Val:  2,
+				Next: nil,
+			},
+		},
+	}, 4*20000)
 	// algorithm.SpiralOrder([][]int{
 	// 	{1, 2, 3, 4},
 	// 	{5, 6, 7, 8},
