@@ -1,6 +1,9 @@
 package main
 
+import "leetcode/pkg/algorithm"
+
 func main() {
+	algorithm.MaxLengthBetweenEqualCharacters("rimkibmvpnhlgtdkazshyilqmywn") //21
 	// algorithm.ExplorationSupply([]int{2, 5, 8, 14, 17}, []int{1, 14, 11, 2})
 	// algorithm.ReContruct(&l_types.ListNode{
 	// 	Val: 2,
