@@ -17,9 +17,6 @@ func maxLengthBetweenEqualCharacters(s string) int {
 
 	for i := 0; i < n; i++ {
 		sByte := s[i]
-		if _, ok := dict[sByte]; !ok {
-			dict[sByte] = []int{}
-		}
 		dict[sByte] = append(dict[sByte], i)
 		ln := len(dict[sByte])
 		if ln > 1 && (dict[sByte][ln-1]-(dict[sByte][0]+1) > res) {
