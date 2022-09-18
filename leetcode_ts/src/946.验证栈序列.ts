@@ -45,4 +45,4 @@ function validateStackSequences(pushed: number[], popped: number[]): boolean {
 };
 // @lc code=end
 
-// validateStackSequences([1, 2, 3, 4, 5], [4, 3, 5, 1, 2]);
+validateStackSequences([1, 2, 3, 4, 5], [4, 3, 5, 1, 2]);
