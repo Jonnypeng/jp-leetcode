@@ -6,7 +6,93 @@ import (
 )
 
 func main() {
-	// algorithm.MaxLengthBetweenEqualCharacters("rimkibmvpnhlgtdkazshyilqmywn") //21
+	algorithm.ReverseOddLevels(&l_types.TreeNode{
+		Val: 1,
+		Left: &l_types.TreeNode{
+			Val: 2,
+			Left: &l_types.TreeNode{
+				Val: 4,
+				Left: &l_types.TreeNode{
+					Val:   8,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &l_types.TreeNode{
+					Val:   9,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+			Right: &l_types.TreeNode{
+				Val: 5,
+				Left: &l_types.TreeNode{
+					Val:   10,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &l_types.TreeNode{
+					Val:   11,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+		},
+		Right: &l_types.TreeNode{
+			Val: 3,
+			Left: &l_types.TreeNode{
+				Val: 6,
+				Left: &l_types.TreeNode{
+					Val:   12,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &l_types.TreeNode{
+					Val:   13,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+			Right: &l_types.TreeNode{
+				Val: 7,
+				Left: &l_types.TreeNode{
+					Val:   14,
+					Left:  nil,
+					Right: nil,
+				},
+				Right: &l_types.TreeNode{
+					Val:   15,
+					Left:  nil,
+					Right: nil,
+				},
+			},
+		},
+	})
+	// algorithm.ReverseOddLevels(&l_types.TreeNode{
+	// 	Val: 2,
+	// 	Left: &l_types.TreeNode{
+	// 		Val: 3,
+	// 		Left: &l_types.TreeNode{
+	// 			Val:  8,
+	// 			Left: nil,
+	// 		},
+	// 		Right: &l_types.TreeNode{
+	// 			Val:  13,
+	// 			Left: nil,
+	// 		},
+	// 	},
+	// 	Right: &l_types.TreeNode{
+	// 		Val: 5,
+	// 		Left: &l_types.TreeNode{
+	// 			Val:  21,
+	// 			Left: nil,
+	// 		},
+	// 		Right: &l_types.TreeNode{
+	// 			Val:  34,
+	// 			Left: nil,
+	// 		},
+	// 	},
+	// })
+	// algorithm.MaxLengthBetweenEqualCharactersroot *algorithm.TreeNode("rimkibmvpnhlgtdkazshyilqmywn") //21
 	// algorithm.ExplorationSupply([]int{2, 5, 8, 14, 17}, []int{1, 14, 11, 2})
 	// algorithm.ReContruct(&l_types.ListNode{
 	// 	Val: 2,
@@ -15,16 +101,16 @@ func main() {
 	// 		Next: nil,
 	// 	},
 	// })
-	algorithm.RotateRight(&l_types.ListNode{
-		Val: 0,
-		Next: &l_types.ListNode{
-			Val: 1,
-			Next: &l_types.ListNode{
-				Val:  2,
-				Next: nil,
-			},
-		},
-	}, 4*20000)
+	// algorithm.RotateRight(&l_types.ListNode{
+	// 	Val: 0,
+	// 	Next: &l_types.ListNode{
+	// 		Val: 1,
+	// 		Next: &l_types.ListNode{
+	// 			Val:  2,
+	// 			Next: nil,
+	// 		},
+	// 	},
+	// }, 4*20000)
 	// algorithm.SpiralOrder([][]int{
 	// 	{1, 2, 3, 4},
 	// 	{5, 6, 7, 8},
