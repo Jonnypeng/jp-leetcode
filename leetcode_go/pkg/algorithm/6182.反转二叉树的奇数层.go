@@ -4,6 +4,12 @@ import (
 	"math"
 )
 
+// 解题思路
+// 1.层序遍历
+// 2.设置记数器，计数器<=2^层数
+// 3.将数据推送到临时数组，当层数增加时候，且为奇数时，进行翻转
+// 4.将翻转过的数组按照2n+1，2n+2进行数组与树的转换
+
 /*
  * @lc app=leetcode.cn id=6182 lang=golang
  *
@@ -12,6 +18,7 @@ import (
 
 // @lc code=start
 
+// 旋转数组
 func rotateArr(arr []*TreeNode) []*TreeNode {
 	n := len(arr)
 	left, right := 0, n-1
@@ -23,12 +30,13 @@ func rotateArr(arr []*TreeNode) []*TreeNode {
 	return arr
 }
 
+// 层序遍历与计算
 func layerSearch(node *TreeNode) *TreeNode {
-	head := node
-	list := []*TreeNode{node}
-	ans := []*TreeNode{}
-	count := 0
-	maxCount := 0
+	head := node              // 存储头
+	list := []*TreeNode{node} // 用于层序遍历的队列
+	ans := []*TreeNode{}      // 用于批量翻转的数组
+	count := 0                // 计数器，每遍历1步就+1
+	maxCount := 0             // 最大记数，也是层数，maxCount是2的指数,x^maxCount等于每层的数量，当count自增等于这个数量，指数自增1
 
 	tempAns := []*TreeNode{}
 
