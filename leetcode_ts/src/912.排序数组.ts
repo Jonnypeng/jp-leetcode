@@ -6,7 +6,7 @@
 
 // @lc code=start
 
-function sortArray(nums: number[]): number[] {
+function sortMyObj(nums: number[]): number[] {
   let sort = function (arr: number[]): number[] {
     if (arr.length <= 1) {
       return arr;
