@@ -6,67 +6,80 @@ import (
 )
 
 func main() {
-	algorithm.ReverseOddLevels(&l_types.TreeNode{
-		Val: 1,
-		Left: &l_types.TreeNode{
-			Val: 2,
-			Left: &l_types.TreeNode{
-				Val: 4,
-				Left: &l_types.TreeNode{
-					Val:   8,
-					Left:  nil,
-					Right: nil,
-				},
-				Right: &l_types.TreeNode{
-					Val:   9,
-					Left:  nil,
-					Right: nil,
-				},
-			},
-			Right: &l_types.TreeNode{
-				Val: 5,
-				Left: &l_types.TreeNode{
-					Val:   10,
-					Left:  nil,
-					Right: nil,
-				},
-				Right: &l_types.TreeNode{
-					Val:   11,
-					Left:  nil,
-					Right: nil,
-				},
-			},
-		},
-		Right: &l_types.TreeNode{
+	algorithm.SortList(&l_types.ListNode{
+		Val: 4,
+		Next: &l_types.ListNode{
 			Val: 3,
-			Left: &l_types.TreeNode{
-				Val: 6,
-				Left: &l_types.TreeNode{
-					Val:   12,
-					Left:  nil,
-					Right: nil,
-				},
-				Right: &l_types.TreeNode{
-					Val:   13,
-					Left:  nil,
-					Right: nil,
-				},
-			},
-			Right: &l_types.TreeNode{
-				Val: 7,
-				Left: &l_types.TreeNode{
-					Val:   14,
-					Left:  nil,
-					Right: nil,
-				},
-				Right: &l_types.TreeNode{
-					Val:   15,
-					Left:  nil,
-					Right: nil,
+			Next: &l_types.ListNode{
+				Val: 2,
+				Next: &l_types.ListNode{
+					Val:  1,
+					Next: nil,
 				},
 			},
 		},
 	})
+	// algorithm.ReverseOddLevels(&l_types.TreeNode{
+	// 	Val: 1,
+	// 	Left: &l_types.TreeNode{
+	// 		Val: 2,
+	// 		Left: &l_types.TreeNode{
+	// 			Val: 4,
+	// 			Left: &l_types.TreeNode{
+	// 				Val:   8,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 			Right: &l_types.TreeNode{
+	// 				Val:   9,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 		},
+	// 		Right: &l_types.TreeNode{
+	// 			Val: 5,
+	// 			Left: &l_types.TreeNode{
+	// 				Val:   10,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 			Right: &l_types.TreeNode{
+	// 				Val:   11,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 		},
+	// 	},
+	// 	Right: &l_types.TreeNode{
+	// 		Val: 3,
+	// 		Left: &l_types.TreeNode{
+	// 			Val: 6,
+	// 			Left: &l_types.TreeNode{
+	// 				Val:   12,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 			Right: &l_types.TreeNode{
+	// 				Val:   13,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 		},
+	// 		Right: &l_types.TreeNode{
+	// 			Val: 7,
+	// 			Left: &l_types.TreeNode{
+	// 				Val:   14,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 			Right: &l_types.TreeNode{
+	// 				Val:   15,
+	// 				Left:  nil,
+	// 				Right: nil,
+	// 			},
+	// 		},
+	// 	},
+	// })
 	// algorithm.ReverseOddLevels(&l_types.TreeNode{
 	// 	Val: 2,
 	// 	Left: &l_types.TreeNode{
