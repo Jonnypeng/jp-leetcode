@@ -1,7 +1,5 @@
 package algorithm
 
-import "sort"
-
 /*
  * @lc app=leetcode.cn id=148 lang=golang
  *
@@ -17,47 +15,57 @@ import "sort"
  * }
  */
 
-func sortList(head *ListNode) *ListNode {
+func merge(node1 *ListNode, node2 *ListNode) *ListNode {
+	dumpNode := &ListNode{}
+	temp, temp1, temp2 := dumpNode, node1, node2
+
+	for temp1 != nil && temp2 != nil {
+		if temp1.Val <= temp2.Val {
+			temp.Next = temp1
+			temp1 = temp1.Next
+		} else {
+			temp.Next = temp2
+			temp2 = temp2.Next
+		}
+		temp = temp.Next
+	}
+
+	if temp1 != nil {
+		temp.Next = temp1
+	} else if temp2 != nil {
+		temp.Next = temp2
+	}
+
+	return dumpNode.Next
+}
+
+func divide(head *ListNode, tail *ListNode) *ListNode {
 	if head == nil {
 		return head
 	}
-	sortList := []int{}
-	p1 := head
-	p2 := head
-	finshed := false
-
-	for !finshed {
-		sortList = append(sortList, p1.Val)
-		if p1.Next == nil {
-			finshed = true
-			p1.Next = &ListNode{
-				Val:  -1,
-				Next: nil,
-			}
-			p1 = p1.Next
-			continue
-		}
-		p1 = p1.Next
+	if head.Next == tail {
+		head.Next = nil
+		return head
 	}
 
-	sort.Ints(sortList)
+	slow, fast := head, head
 
-	p2 = p1
-
-	for i, v := range sortList {
-		p2.Val = v
-		if i < len(sortList)-1 {
-			p2.Next = &ListNode{
-				Val:  -1,
-				Next: nil,
-			}
-		} else {
-			p2.Next = nil
+	for fast != tail {
+		slow = slow.Next
+		fast = fast.Next
+		if fast != tail {
+			fast = fast.Next
 		}
-		p2 = p2.Next
 	}
 
-	return p1
+	mid := slow
+
+	return merge(divide(head, mid), divide(mid, tail))
+}
+
+func sortList(head *ListNode) *ListNode {
+	res := divide(head, nil)
+	return res
 }
 
 // @lc code=end
