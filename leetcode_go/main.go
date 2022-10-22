@@ -2,23 +2,23 @@ package main
 
 import (
 	"leetcode/pkg/algorithm"
-	"leetcode/pkg/l_types"
 )
 
 func main() {
-	algorithm.SortList(&l_types.ListNode{
-		Val: 4,
-		Next: &l_types.ListNode{
-			Val: 3,
-			Next: &l_types.ListNode{
-				Val: 2,
-				Next: &l_types.ListNode{
-					Val:  1,
-					Next: nil,
-				},
-			},
-		},
-	})
+	algorithm.MaxProfit([]int{7, 6, 5, 4, 3, 2, 1})
+	// algorithm.SortList(&l_types.ListNode{
+	// 	Val: 4,
+	// 	Next: &l_types.ListNode{
+	// 		Val: 3,
+	// 		Next: &l_types.ListNode{
+	// 			Val: 2,
+	// 			Next: &l_types.ListNode{
+	// 				Val:  1,
+	// 				Next: nil,
+	// 			},
+	// 		},
+	// 	},
+	// })
 	// algorithm.ReverseOddLevels(&l_types.TreeNode{
 	// 	Val: 1,
 	// 	Left: &l_types.TreeNode{
