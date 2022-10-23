@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-	algorithm.MaxProfit([]int{7, 6, 5, 4, 3, 2, 1})
+	algorithm.MergeAlternately("ab", "pqrs")
+	// algorithm.MaxProfit([]int{7, 6, 5, 4, 3, 2, 1})
 	// algorithm.SortList(&l_types.ListNode{
 	// 	Val: 4,
 	// 	Next: &l_types.ListNode{
