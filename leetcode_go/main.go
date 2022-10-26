@@ -5,8 +5,9 @@ import (
 )
 
 func main() {
+	algorithm.UniquePaths(3, 3)
 	// algorithm.PartitionDisjoint([]int{5, 0, 3, 8, 6})
-	algorithm.PartitionDisjoint([]int{1, 1, 1, 0, 6, 12})
+	// algorithm.PartitionDisjoint([]int{1, 1, 1, 0, 6, 12})
 	// algorithm.MaxProfit([]int{7, 6, 5, 4, 3, 2, 1})
 	// algorithm.SortList(&l_types.ListNode{
 	// 	Val: 4,
