@@ -5,7 +5,8 @@ import (
 )
 
 func main() {
-	algorithm.LetterCasePermutation("a1b2c3")
+	algorithm.ReverseBits(4)
+	// algorithm.LetterCasePermutation("a1b2c3")
 	// algorithm.UniquePaths(3, 3)
 	// algorithm.PartitionDisjoint([]int{5, 0, 3, 8, 6})
 	// algorithm.PartitionDisjoint([]int{1, 1, 1, 0, 6, 12})
