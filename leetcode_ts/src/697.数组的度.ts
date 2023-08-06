@@ -12,10 +12,8 @@ interface Res {
   indesxs?: number[];
 }
 
-function getRepeatVal(nums: number[]): number {
-  const dict: Map<number, Res> = new Map();
+function getRepeatVal(nums: number[], dict: Map<number, Res>): number {
   let _maxValue = 0;
-  let _minLength = Number.MAX_VALUE;
   for (let i = 0; i < nums.length; i++) {
     const v = nums[i];
     if (dict.has(v)) {
@@ -34,17 +32,22 @@ function getRepeatVal(nums: number[]): number {
     }
     if (dict.get(v)!.maxValue! > _maxValue) {
       _maxValue = dict.get(v)!.maxValue!;
-      if (_minLength > dict.get(v)?.maxLength!) {
-        _minLength = dict.get(v)?.maxLength!;
-      }
     }
   }
-  return _minLength;
+  return _maxValue;
 }
 
 function findShortestSubArray(nums: number[]): number {
-  const rl = getRepeatVal(nums)
-  return rl
+  const dict: Map<number, Res> = new Map();
+  const rl = getRepeatVal(nums,dict);
+  let res = Number.MAX_VALUE;
+  dict.forEach(value=>{
+    const { maxValue,maxLength} = value;
+    if(maxValue === rl){
+      res = Math.min(res,maxLength!)
+    }
+  })
+  return res;
 };
 // @lc code=end
 
