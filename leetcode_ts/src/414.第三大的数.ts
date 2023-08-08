@@ -6,39 +6,16 @@
 
 // @lc code=start
 function thirdMax(nums: number[]): number {
-	const myArr: number[] = new Array(3).fill(Number.MIN_SAFE_INTEGER);
-	let res = -1;
-	for (let i = 0; i < nums.length; i++) {
-		const val = nums[i];
-		if(val === myArr[0]){
-			continue;
-		}
-		if (val > myArr[0]) {
-			myArr[1] = myArr[0];
-			myArr[0] = val;
-			continue;
-		}
-		if(val === myArr[1]){
-			continue;
-		}
-		if (val > myArr[1]) {
-			myArr[2] = myArr[1];
-			myArr[1] = val;
-			continue;
-		}
-		if(val === myArr[2]){
-			continue;
-		}
-		if (val > myArr[2]) {
-			myArr[2] = val;
-		}
+	let _nums = Array.from(new Set(nums));
+	const n = _nums.length;
+	_nums.sort((a, b) => a - b)
+	if (n >= 3) {
+		return _nums[n-3]
 	}
-	if (myArr[2] !== Number.MIN_SAFE_INTEGER) {
-		return myArr[2]
-	}
-	return myArr[0]
-};
+	return _nums[n - 1]
+}
 // @lc code=end
 
 
-thirdMax([1,-2147483648,2])
+// thirdMax([1, -2147483648, 2])
+thirdMax([3,2,1])
