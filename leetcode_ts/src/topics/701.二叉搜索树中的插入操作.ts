@@ -4,7 +4,7 @@
  * [701] 二叉搜索树中的插入操作
  */
 
-import { TreeNode } from './type';
+import { TreeNode } from '../type';
 
 // @lc code=start
 /**

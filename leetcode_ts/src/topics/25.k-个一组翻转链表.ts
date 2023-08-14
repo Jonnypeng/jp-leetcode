@@ -1,4 +1,4 @@
-import { ListNode } from './type';
+import { ListNode } from '../type';
 
 /*
  * @lc app=leetcode.cn id=25 lang=typescript
