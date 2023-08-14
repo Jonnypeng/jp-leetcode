@@ -25,4 +25,4 @@ export default function arrayConvertLinked(data: number[]): ListNode|null {
   return head.next;
 }
 
-arrayConvertLinked([1,2,3,4,5,6,6,1]);
+// arrayConvertLinked([1,2,3,4,5,6,6,1]);

@@ -94,13 +94,15 @@ function doubleIt(head: ListNode | null): ListNode | null {
 
 };
 
-doubleIt({
-  val: 9,
-  next: {
-    val: 9,
-    next: {
-      val: 9
-      , next: null
-    }
-  }
-})
+
+
+// doubleIt({
+//   val: 9,
+//   next: {
+//     val: 9,
+//     next: {
+//       val: 9
+//       , next: null
+//     }
+//   }
+// })
